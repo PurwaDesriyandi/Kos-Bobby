@@ -199,6 +199,9 @@ header#head::after {
     background: #424530;
     padding: 20px 0;
 }
+.head-box h2{
+    color: #FFEFCD;
+}
 .head-box h1{
     color:#FFEFCD;
     font-size: px;
@@ -211,7 +214,7 @@ header#head::after {
 padding:40px 0;
 }
 .section-heading h1{
-	color: #034732;
+	color: #FFEFCD;
 }
 .section-heading h2{
 font-size:32px;
@@ -252,10 +255,10 @@ max-width: 100%;
 margin: 0 auto;
 }
 .box-2 .btn{
-background-color: #FB8B24 !important;
+background-color: #97db4f !important;
 }
 .box-2 .btn:hover{
-color:#171219; 
+color:#424530; 
 }
 .panel {
 	margin-bottom: 0px;
@@ -505,7 +508,7 @@ img.pull-left {
 	height: 60px;
 	text-align: center;
 	line-height: 60px;
-	background: #034732;
+	background: #424530;
 	border: 1px solid #000;
 	border-radius: 50%;
 }
