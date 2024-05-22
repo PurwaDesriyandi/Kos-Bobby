@@ -1,0 +1,15 @@
+Jobsdesc Anggota
+
+1. Lintang Mukti Nugroho (K3522040)
+- Membuat page Beranda dan Portal Layanan
+- Styling dan Coloring
+
+2. Septian Dwi Cahyo Nugroho (K3522078)
+- Membuat page Tentang Solo dan Link Dinas
+- Mencari Aset
+
+LinK git
+https://github.com/LimunBF/Pemerintah-Surakarta.git
+
+Link Publikasi
+https://limunbf.github.io/Pemerintah-Surakarta/
