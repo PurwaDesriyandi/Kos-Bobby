@@ -101,7 +101,7 @@ padding: 10px 0 0;
 #head {
 	/* background: #181015 url( ../images/bg_header.jpg) no-repeat; */
 	background-size: cover;
-	height: 725px;
+	height: 600px;
 	text-align: center;
 	font-weight: 300;
 	position: relative; 
@@ -850,8 +850,8 @@ nav#filter a.current {
 	color: #ABABAB;
 }
 #head.secondary {
-	height: 725px;
-	min-height: 725px;
+	height: 625px;
+	min-height: 625px;
 	padding-top: 0px;
 	background-size: cover;
 	text-align: left; 
@@ -859,11 +859,11 @@ nav#filter a.current {
 }
 #head.secondary-1{
 	background: #181015 url(../images/2.jpg) 0px -145px no-repeat;
-	background-size: 100% 195%;
+	background-size: 100% 145%;
 }
 #head.secondary-2{
 	background: #181015 url(../images/14.jpg) 0px -145px no-repeat;
-	background-size: 100% 195%;
+	background-size: 100% 145%;
 }
 #head.secondary-3{
 	background: #181015 url(../images/keraton-2.jpg) 0px -145px no-repeat;
