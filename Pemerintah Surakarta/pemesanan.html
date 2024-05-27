@@ -77,90 +77,84 @@
         </div>
 </header>
 <body>
-    <div class="container" style="max-width:600px; padding: 40px 20px;">
-        <form class="form-horizontal" role="form">
-            <div class="form-group">
-                <label for="name" class="control-label col-sm-3">Nama</label>
-                <div class="col-sm-8">
-                    <input type="name" class="form-control" id="name" placeholder="Nama Sesuai KTP">
+    <div class="container" style="max-width:1000px; padding: 40px 100px; border-radius: 40px;  background-color: #ffffff;">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="name" class="col-sm-1">Nama</label>
+            <input type="text" name="normal_input" id="normal_input" class="form-control" placeholder="Nama Sesuai KTP">
+        </div>
+        <div class="form-group">
+            <label for="phone_number" class="col-sm-3">No Handphone</label>
+            <input type="phone_number" class="form-control" id="phone_number" rows="3" placeholder="No. Handphone">
+        </div>
+        <div class="form-group">
+            <label for="address" class="col-sm-3">Alamat Domisili</label>
+            <textarea class="form-control" id="address" rows="3" placeholder="Alamat Domisili"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="facilities" class="col-sm-4">Fasilitas Tambahan</label>
+            <div class="col-sm-9">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="additional_facilities[]" value="Magicom"> Magicom
+                    </label><br>
+                    <label>
+                        <input type="checkbox" name="additional_facilities[]" value="Kipas"> Kipas
+                    </label><br>
+                    <label>
+                        <input type="checkbox" name="additional_facilities[]" value="Laptop"> Laptop
+                    </label><br>
+                    <label>
+                        <input type="checkbox" name="additional_facilities[]" value="Kulkas"> Kulkas
+                    </label><br>
+                    <label>
+                        <input type="checkbox" name="additional_facilities[]" value="Lain Lain"> Lain Lain
+                        <input type="text" class="form-control" id="other_facilities" placeholder="Lain Lain" >
+                    </label>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="phone_number" class="control-label col-sm-3">No Handphone</label>
-                <div class="col-sm-8">
-                    <input type="phone_number" class="form-control" id="phone_number" placeholder="No. Handphone">
+        </div>
+        <div class="form-group">
+            <label for="room_type" class="col-sm-4">Tipe Kamar</label>
+            <div class="col-sm-9">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="room_type" id="ac_room" value="AC"> AC
+                    </label>
+                    <label>
+                        <input type="radio" name="room_type" id="non_ac_room" value="NON AC"> NON AC
+                    </label>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="text" class="control-label col-sm-4">Alamat Domisili</label>
-                <div class="col-sm-8">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Alamat Domisili"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="date" class="col-sm-3">Tanggal Masuk</label>
+                <input type="date" class="form-control" id="date">
+        </div>
+        <div class="form-group">
+            <label for="rent_duration" class="col-sm-4">Waktu Sewa</label>
+            <div class="col-sm-9">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="rent_duration" id="six_months" value="6 Bulan"> 6 Bulan
+                    </label>
+                    <label>
+                        <input type="radio" name="rent_duration" id="twelve_months" value="12 Bulan"> 12 Bulan </label>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="elektronik" class="control-label col-sm-8">Fasilitas Tambahan</label>
-                <div class="form-check">
-                    <div class="col-sm-5">
-                        <input class="form-check-input" type="checkbox" id="check1" name="check1" value="Bike">
-                        <label for="vehicle1"> Magicom </label><br>
-                        <input class="form-check-input" type="checkbox" id="check1" name="check2" value="Bike">
-                        <label for="vehicle1"> Kipas </label><br>
-                        <input class="form-check-input" type="checkbox" id="check1" name="check3" value="Bike">
-                        <label for="vehicle1"> Laptop </label><br>
-                        <input class="form-check-input" type="checkbox" id="check1" name="check4" value="Bike">
-                        <label for="vehicle1"> Kulkas </label><br>
-                        <input class="form-check-input" type="checkbox" id="check1" name="check5" value="Bike">
-                        <label for="vehicle1"> Lain Lain </label>
-                        <input type="name" class="form-control" id="name" placeholder="Lain Lain">
-                    </div>
+        </div>
+        <div class="form-group">
+            <label for="rent_duration" class="col-sm-4">Jumlah Penghuni</label>
+            <div class="col-sm-9">
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="penghuni" id="one_person" value="1 orang"> 1 orang
+                    </label>
+                    <label>
+                        <input type="radio" name="penghuni" id="two_person" value="12 orang"> 2 orang </label>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="elektronik" class="control-label col-sm-8">Fasilitas Tambahan</label>
-                <div class="form-check">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="check1" name="check1" value="Bike">
-                        <label for="vehicle1"> AC </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="check2" name="check2" value="Bike">
-                        <label for="vehicle1"> NON AC </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="date" class="control-label col-sm-3">Tanggal Masuk</label>
-                <div class="col-sm-8">
-                    <input type="date" class="form-control" id="date">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="elektronik" class="control-label col-sm-8">Waktu Sewa</label>
-                <div class="form-check">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="check1" name="check1" value="Bike">
-                        <label for="vehicle1"> 6 Bulan </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="check2" name="check2" value="Bike">
-                        <label for="vehicle1"> 12 Bulan </label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="elektronik" class="control-label col-sm-8">Jumlah Penghuni</label>
-                <div class="form-check">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="check1" name="check1" value="Bike">
-                        <label for="vehicle1"> 1 Orang </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="check2" name="check2" value="Bike">
-                        <label for="vehicle1"> 2 Orang </label>
-                    </div>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </body>    
 
@@ -201,6 +195,9 @@
         <script type='text/javascript' src='assets/js/camera.min.js'></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/custom.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script>
             jQuery(function () {
 

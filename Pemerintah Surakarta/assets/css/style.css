@@ -949,7 +949,7 @@ body .container p{
 	background: #FB8B24 !important;
 }
 .btn {
-	background: #00BBFF;
+	background: #87db4f;
 	color: #fff;
 }
 .footer2 a {
@@ -974,6 +974,11 @@ display:inline-block;
 	margin: 3px 20px 3px 100px;
 	background-color: yellow;
 	
+}
+.form-group label{
+	font-size: 15px;
+	padding-right: 20px;
+	padding-bottom: 10px;
 }
 
 /**
