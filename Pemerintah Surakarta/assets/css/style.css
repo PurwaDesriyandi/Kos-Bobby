@@ -479,6 +479,7 @@ img.pull-left {
 	padding-right: 145px;
 }
 .text-h3{
+	margin-top: 10px;
 	font-size: 23px;
 }
 .fa{
@@ -487,7 +488,7 @@ img.pull-left {
 	padding-top: 4px;
 }
 .featured-box h3 {
-	margin: 0 0 5px 0;
+	margin: 11px 0 5px 0;
 	color: #034732;
 }
 .featured-box a {
