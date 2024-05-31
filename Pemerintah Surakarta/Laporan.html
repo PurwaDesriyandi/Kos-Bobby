@@ -179,20 +179,7 @@
         window.onload = checkExpiration;
     </script>
     <script>
-        // document.getElementById("submit").onclick = function () {
-        // document.getElementById("table").style.display = "block";
 
-        // var table = document.getElementById("table");
-        // var row = table.insertRow(-1);
-        // var date = row.insertCell(0);
-        // var desc = row.insertCell(1);
-        // var amt = row.insertCell(2);
-        // date.innerHTML = document.getElementById("date").value;
-        // desc.innerHTML = document.getElementById("desc").value;
-        // amt.innerHTML = document.getElementById("amount").value;
-
-        // return false;
-        // }
         document.getElementById("saveForm").onclick=function(){
         document.getElementById("table").style.display = "block";
 
@@ -206,7 +193,7 @@
         return false;
         }
     </script>
-    <body>
+    <!-- <body>
         <h1>Expense Tracker</h1>
         <form action="">
         <label for="date">Date: </label>
@@ -233,3 +220,17 @@
         </tr>
         </table>
     </body>
+    document.getElementById("submit").onclick = function () {
+        document.getElementById("table").style.display = "block";
+
+        var table = document.getElementById("table");
+        var row = table.insertRow(-1);
+        var date = row.insertCell(0);
+        var desc = row.insertCell(1);
+        var amt = row.insertCell(2);
+        date.innerHTML = document.getElementById("date").value;
+        desc.innerHTML = document.getElementById("desc").value;
+        amt.innerHTML = document.getElementById("amount").value;
+
+        return false;
+        } -->
