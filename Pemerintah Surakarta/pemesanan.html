@@ -78,82 +78,65 @@
 </header>
 <section>
     <div class="container" style="max-width:1000px; padding: 40px 100px; border-radius: 40px;  background-color: #ffffff;">
-    <form class="form-horizontal" role="form">
-        <div class="form-group">
-            <label for="name" class="col-sm-1">Nama</label>
-            <input type="text" name="normal_input" id="normal_input" class="form-control" placeholder="Nama Sesuai KTP">
-        </div>
-        <div class="form-group">
-            <label for="phone_number" class="col-sm-3">No Handphone</label>
-            <input type="phone_number" class="form-control" id="phone_number" rows="3" placeholder="No. Handphone">
-        </div>
-        <div class="form-group">
-            <label for="address" class="col-sm-3">Alamat Domisili</label>
-            <textarea class="form-control" id="address" rows="3" placeholder="Alamat Domisili"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="facilities" class="col-sm-4">Fasilitas Tambahan</label>
-            <div class="col-sm-9">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="additional_facilities[]" value="Magicom"> Magicom
-                    </label><br>
-                    <label>
-                        <input type="checkbox" name="additional_facilities[]" value="Kipas"> Kipas
-                    </label><br>
-                    <label>
-                        <input type="checkbox" name="additional_facilities[]" value="Laptop"> Laptop
-                    </label><br>
-                    <label>
-                        <input type="checkbox" name="additional_facilities[]" value="Kulkas"> Kulkas
-                    </label><br>
-                    <label>
-                        <input type="checkbox" name="additional_facilities[]" value="Lain Lain"> Lain Lain
-                        <input type="text" class="form-control" id="other_facilities" placeholder="Lain Lain" >
-                    </label>
+        <form class="form-horizontal" role="form" id="rentalForm">
+            <div class="form-group">
+                <label for="name" class="col-sm-1">Nama</label>
+                <input type="text" name="normal_input" id="normal_input" class="form-control" placeholder="Nama Sesuai KTP">
+            </div>
+            <div class="form-group">
+                <label for="phone_number" class="col-sm-3">No Handphone</label>
+                <input type="text" class="form-control" id="phone_number" placeholder="No. Handphone">
+            </div>
+            <div class="form-group">
+                <label for="address" class="col-sm-3">Alamat Domisili</label>
+                <textarea class="form-control" id="address" rows="3" placeholder="Alamat Domisili"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="facilities" class="col-sm-4">Fasilitas Tambahan</label>
+                <div class="col-sm-9">
+                    <div class="checkbox">
+                        <label><input type="checkbox" name="additional_facilities[]" value="Magicom"> Magicom</label><br>
+                        <label><input type="checkbox" name="additional_facilities[]" value="Kipas"> Kipas</label><br>
+                        <label><input type="checkbox" name="additional_facilities[]" value="Laptop"> Laptop</label><br>
+                        <label><input type="checkbox" name="additional_facilities[]" value="Kulkas"> Kulkas</label><br>
+                        <label><input type="checkbox" name="additional_facilities[]" value="Lain Lain"> Lain Lain
+                            <input type="text" class="form-control" id="other_facilities" placeholder="Lain Lain">
+                        </label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="room_type" class="col-sm-4">Tipe Kamar</label>
-            <div class="col-sm-9">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="room_type" id="ac_room" value="AC"> AC
-                    </label>
-                    <label>
-                        <input type="radio" name="room_type" id="non_ac_room" value="NON AC"> NON AC
-                    </label>
+            <div class="form-group">
+                <label for="room_type" class="col-sm-4">Tipe Kamar</label>
+                <div class="col-sm-9">
+                    <div class="radio">
+                        <label><input type="radio" name="room_type" id="ac_room" value="AC"> AC</label>
+                        <label><input type="radio" name="room_type" id="non_ac_room" value="NON AC"> NON AC</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="date" class="col-sm-3">Tanggal Masuk</label>
+            <div class="form-group">
+                <label for="date" class="col-sm-3">Tanggal Masuk</label>
                 <input type="date" class="form-control" id="date">
-        </div>
-        <div class="form-group">
-            <label for="rent_duration" class="col-sm-4">Waktu Sewa</label>
-            <div class="col-sm-9">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="rent_duration" id="six_months" value="6 Bulan"> 6 Bulan
-                    </label>
-                    <label>
-                        <input type="radio" name="rent_duration" id="twelve_months" value="12 Bulan"> 12 Bulan </label>
+            </div>
+            <div class="form-group">
+                <label for="rent_duration" class="col-sm-4">Waktu Sewa</label>
+                <div class="col-sm-9">
+                    <div class="radio">
+                        <label><input type="radio" name="rent_duration" id="six_months" value="6 Bulan"> 6 Bulan</label>
+                        <label><input type="radio" name="rent_duration" id="twelve_months" value="12 Bulan"> 12 Bulan</label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="rent_duration" class="col-sm-4">Jumlah Penghuni</label>
-            <div class="col-sm-9">
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="penghuni" id="one_person" value="1 orang"> 1 orang
-                    </label>
-                    <label>
-                        <input type="radio" name="penghuni" id="two_person" value="12 orang"> 2 orang </label>
+            <div class="form-group">
+                <label for="penghuni" class="col-sm-4">Jumlah Penghuni</label>
+                <div class="col-sm-9">
+                    <div class="radio">
+                        <label><input type="radio" name="penghuni" id="one_person" value="1 orang"> 1 orang</label>
+                        <label><input type="radio" name="penghuni" id="two_person" value="2 orang"> 2 orang</label>
+                    </div>
                 </div>
             </div>
+<<<<<<< Updated upstream
         </div>
         <div class="form-group">
             <label for="rent_duration" class="col-sm-4">Pilih No Kamar</label>
@@ -195,6 +178,10 @@
                 </div>
             </div>
         </div>
+=======
+            <button type="button" class="btn btn-primary" onclick="saveForm()">Save</button>
+        </form>
+>>>>>>> Stashed changes
     </div>    
 </section>
 
@@ -262,4 +249,48 @@
             autoResizeDiv();
         </script>
 </body>
+<script>
+    function saveForm() {
+        const name = document.getElementById('normal_input').value;
+        const phoneNumber = document.getElementById('phone_number').value;
+        const address = document.getElementById('address').value;
+        const additionalFacilities = Array.from(document.querySelectorAll('input[name="additional_facilities[]"]:checked')).map(cb => cb.value);
+        const otherFacilities = document.getElementById('other_facilities').value;
+        const roomType = document.querySelector('input[name="room_type"]:checked').value;
+        const date = document.getElementById('date').value;
+        const rentDuration = document.querySelector('input[name="rent_duration"]:checked').value;
+        const penghuni = document.querySelector('input[name="penghuni"]:checked').value;
+    
+        const formData = {
+            name,
+            phoneNumber,
+            address,
+            additionalFacilities,
+            otherFacilities,
+            roomType,
+            date,
+            rentDuration,
+            penghuni
+        };
+    
+        const durationInMilliseconds = rentDuration === "6 Bulan" ? 6 * 30 * 24 * 60 * 60 * 1000 : 12 * 30 * 24 * 60 * 60 * 1000;
+        const expirationTime = Date.now() + durationInMilliseconds;
+    
+        localStorage.setItem('formData', JSON.stringify(formData));
+        localStorage.setItem('formDataExpiration', expirationTime.toString());
+    
+        alert('Data saved successfully!');
+    }
+    
+    function checkExpiration() {
+        const expirationTime = localStorage.getItem('formDataExpiration');
+        if (expirationTime && Date.now() > parseInt(expirationTime, 10)) {
+            localStorage.removeItem('formData');
+            localStorage.removeItem('formDataExpiration');
+            alert('Saved data has expired and has been removed.');
+        }
+    }
+    
+    window.onload = checkExpiration;
+    </script>
 </html>
