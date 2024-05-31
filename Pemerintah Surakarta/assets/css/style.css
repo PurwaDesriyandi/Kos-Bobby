@@ -673,6 +673,15 @@ footer .konten-footer-2 ul li a:hover {
     font-size: 12px;
 	padding-bottom: 5px;
 }
+.copyright1{
+	width: 100%;
+    background-color: #171219;
+    text-align: center;
+	padding-top: 15px;
+    color: white;
+    font-size: 12px;
+	padding-bottom: 5px;
+}
 .follow-me-icons {
 	font-size: 30px;
 }
