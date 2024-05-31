@@ -260,16 +260,19 @@ background-color: #97db4f !important;
 .box-2 .btn:hover{
 color:#424530; 
 }
-.panel {
-	margin-bottom: 0px;
-	background-color: transparent;
-	border: 1px solid transparent;
-	border-radius: 0px;
-	-webkit-box-shadow: none;
-	box-shadow: none;
+.box-list{
+	margin-top: 50px;
 }
-.panel-body {
-	padding: 0px;
+.box-list tr th{
+	font-size: 24px;
+	text-decoration: none;
+	text-align: center;
+	font-weight: 800;
+}
+.box-list tr td{
+	font-size: 20px;
+	text-decoration: none;
+	text-align: center;
 }
 #dropdown-hover .hover-dropdown li a:hover{
 	color: #FB8B24;
@@ -452,18 +455,6 @@ img.pull-left {
 #social .wrapper {
 	width: 340px;
 	margin: 0 auto;
-}
-.sidebar {
-	padding-top: 36px;
-	padding-bottom: 30px;
-}
-.sidebar .panel {
-	margin-bottom: 20px;
-	background: #F0F0F0;
-	padding: 20px;
-}
-.sidebar h1, .sidebar .h1, .sidebar h2, .sidebar .h2, .sidebar h3, .sidebar .h3 {
-	margin-top: 20px;
 }
 .featured-box {
 	padding: 20px;
@@ -704,25 +695,6 @@ footer .konten-footer-2 ul li a:hover {
 }
 .footer2 p {
 	margin: 0;
-}
-.panel-simplenav {
-	margin-left: -5px;
-}
-.panel-simplenav a {
-	margin: 0 5px;
-}
-.item blockquote {
-	border-left: none;
-	margin: 0;
-}
-.item blockquote img {
-	margin-bottom: 10px;
-}
-.item blockquote p:before {
-	content: "\f10d";
-	font-family: 'Fontawesome';
-	float: left;
-	margin-right: 10px;
 }
 .contact ul {
 	padding: 0px;
