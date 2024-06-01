@@ -76,6 +76,7 @@
         </div>
     </div>
 </body>
+
 <section>
     <div class="section-heading">
         <h2>Kritik Saran</h2>
@@ -83,28 +84,25 @@
     <div class="container" style="max-width:1000px; padding: 40px 100px; border-radius: 40px;  background-color: #ffffff;">
         <form class="form-horizontal" role="form" id="rentalForm">
             <div class="form-group">
-                <label for="name" class="col-sm-1">Nama</label>
-                <input type="text" name="normal_input" id="nama" class="form-control" placeholder="Nama">
-            </div>
-            <div class="form-group">
-                <label for="address" class="col-sm-3">Kritik Saran</label>
+                <label for="kritiksaran" class="col-sm-3">Kritik Saran</label>
                 <textarea class="form-control" id="kritiksaran" rows="3" placeholder="Kritik Saran"></textarea>
             </div>
         </form>
-        <button type="button" id = "saveForm" value="saveForm" class="btn btn-primary" onclick="saveForm()">Submit</button>
+        <button type="button" id="submit" value="submit" class="btn btn-primary">Submit</button>
     </div>
 </section>
+
 <section class="container">
     <div class="box-list">
         <table class="table table-hover table-bordered" id="table">
             <h1>Kritik Saran</h1>
             <tr>
-                <th>Nama</th>
                 <th>Kritik dan Saran</th>
             </tr>
         </table>
     </div>
 </section>
+
 <section>
     <div class="col-md-12">
         <div style="padding-bottom: 100px; padding-top: 50px;">
@@ -152,85 +150,69 @@
     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
 
     <script>
-        function saveForm() {
-            const name = document.getElementById('normal_input').value;
-            const kritiksaran = document.getElementById('address').value;
-        
-            const formData = {
-                name,
-                kritiksaran
-            };
-        
-            localStorage.setItem('formData', JSON.stringify(formData));
-            localStorage.setItem('formDataExpiration', expirationTime.toString());
-        
-            alert('Data saved successfully!');
-        }
-        
-        function checkExpiration() {
-            const expirationTime = localStorage.getItem('formDataExpiration');
-            if (expirationTime && Date.now() > parseInt(expirationTime, 10)) {
-                localStorage.removeItem('formData');
-                localStorage.removeItem('formDataExpiration');
-                alert('Saved data has expired and has been removed.');
-            }
-        }
-        
-        window.onload = checkExpiration;
+
+
+
+
+
+// Save form data to local storage and update the table
+function submit() {
+    const kritiksaran = document.getElementById('kritiksaran').value;
+
+    if (!kritiksaran) {
+        alert('Please fill out both fields.');
+        return;
+    }
+
+    const formData = {kritiksaran };
+
+    // Get existing data from local storage
+    let data = JSON.parse(localStorage.getItem('formData')) || [];
+    // Add new data to the array
+    data.push(formData);
+    // Save updated array back to local storage
+    localStorage.setItem('formData', JSON.stringify(data));
+
+    // Update the table
+    addToTable(formData);
+
+    // Clear the form
+    document.getElementById('rentalForm').reset();
+
+    alert('Data saved successfully!');
+}
+
+// Load data from local storage and populate the table
+function loadFormData() {
+    const data = JSON.parse(localStorage.getItem('formData')) || [];
+    data.forEach(item => addToTable(item));
+}
+
+// Add a row to the table
+function addToTable(formData) {
+    const table = document.getElementById("table");
+    const row = table.insertRow(-1);
+    const kritiksaranCell = row.insertCell(0);
+
+    kritiksaranCell.textContent = formData.kritiksaran;
+}
+
+// Clear expired data from local storage (optional)
+function checkExpiration() {
+    const expirationTime = localStorage.getItem('formDataExpiration');
+    if (expirationTime && Date.now() > parseInt(expirationTime, 10)) {
+        localStorage.removeItem('formData');
+        localStorage.removeItem('formDataExpiration');
+        alert('Saved data has expired and has been removed.');
+    }
+}
+
+// Initialize check on window load and load existing data
+window.onload = function() {
+    checkExpiration();
+    loadFormData();
+};
+
+// Attach event listener to the button
+document.getElementById("submit").onclick = submit;
     </script>
-    <script>
-
-        document.getElementById("saveForm").onclick=function(){
-        document.getElementById("table").style.display = "block";
-
-        var table = document.getElementById("table");
-        var row = table.insertRow(-1);
-        var name = row.insertCell(0);
-        var kritiksaran = row.insertCell(1);
-        name.innerHTML = document.getElementById("name").value;
-        kritiksaran.innerHTML = document.getElementById("kritiksaran").value;
-
-        return false;
-        }
-    </script>
-    <!-- <body>
-        <h1>Expense Tracker</h1>
-        <form action="">
-        <label for="date">Date: </label>
-        <input type="date" id="date">
-        <br>
-
-        <label for="desc">Description: </label>
-        <input type="text" id="desc">
-        <br>
-
-        <label for="amount">Amount: </label>
-        <input type="text" id="amount">
-        <br>
-
-        <input type="button" id="submit" value="Submit">
-        <br>
-        </form>
-
-        <table id="table">
-        <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Amount</th>
-        </tr>
-        </table>
-    </body>
-    document.getElementById("submit").onclick = function () {
-        document.getElementById("table").style.display = "block";
-
-        var table = document.getElementById("table");
-        var row = table.insertRow(-1);
-        var date = row.insertCell(0);
-        var desc = row.insertCell(1);
-        var amt = row.insertCell(2);
-        date.innerHTML = document.getElementById("date").value;
-        desc.innerHTML = document.getElementById("desc").value;
-        amt.innerHTML = document.getElementById("amount").value;
-
-        return false;
-        } -->
