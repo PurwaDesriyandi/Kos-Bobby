@@ -392,48 +392,12 @@ div.hbox {
 .jumbotron {
 	background-color: #E0E0E0;
 }
-.page-header {
-	border-bottom: 1px solid #15c008;
-}
-.page-title {
-	margin-top: 20px;
-	font-weight: 300;
-	color: #15c008;
-}
-.text-muted {
-	color: #888;
-}
-.centering-image{
-	margin-top: 20px;
-	width: 50%;
-	margin-left: auto;
-	margin-right: auto;
-}
-.breadcrumb {
-	background: none;
-	padding: 0;
-	margin: 30px 0 0px 0;
-}
 ul.list-spaces li {
 	margin-bottom: 10px;
 }
 .container-full {
 	margin: 0 auto;
 	width: 100%;
-}
-.top-space {
-	margin-top: 60px;
-}
-.top-margin {
-	margin-top: 20px;
-}
-.circle {
-	background: rgb(214, 214, 214);
-	width: 95px;
-	height: 95px;
-	border-radius: 90px;
-	line-height: 95px;
-	margin: 0 auto 20px;
 }
 img {
 	max-width: 100%;
@@ -545,7 +509,6 @@ section .container .misi .huruf p{
 footer {
 	align-items: center;
 	border-top: 1px solid #FB8B24;
-	background:#D8D8D8;
 	margin-top: 0;
 }
 .social {
@@ -558,45 +521,6 @@ footer {
 }
 .social a:hover {
 	color: #0DC0C0;
-}
-/* Footer */
-.footer1 {
-	background: #fff;
-	padding: 30px 0 0 0;
-	font-size: 12px;
-	color: #999;
-}
-.footer1 a {
-	color: #ccc;
-}
-.footer1 a:hover {
-	color: #fff;
-}
-.footer1 .panel {
-	margin-bottom: 30px;
-}
-.footer1 .panel-title {
-	font-size: 17px;
-	font-weight: bold;
-	color: #ccc;
-	margin: 0 0 20px;
-}
-.footer1 .entry-meta {
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	margin: 0 0 35px 0;
-	padding: 2px 0;
-	color: #888888;
-	font-size: 12px;
-	font-size: 0.75rem;
-}
-.footer1 .entry-meta a {
-	color: #333333;
-}
-.footer1 .entry-meta .meta-in {
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	padding: 10px 0;
 }
 .footer-1{
     width: 100%;
@@ -643,27 +567,6 @@ footer .konten-footer-2 {
     gap: 100px;
 }
 
-footer .konten-footer-2 h4 {
-    margin-bottom: 20px;
-    color: white;
-}
-
-footer .konten-footer-2 ul {
-    list-style: none;
-}
-
-footer .konten-footer-2 ul li {
-    margin-bottom: 10px;
-}
-
-footer .konten-footer-2 ul li a {
-    text-decoration: none;
-    color: white;
-}
-footer .konten-footer-2 ul li a:hover {
-    text-decoration: underline;
-    color: white;
-}
 .copyright{
 	border-top: 1px solid #FB8B24;
 	width: 100%;
@@ -672,39 +575,7 @@ footer .konten-footer-2 ul li a:hover {
 	padding-top: 15px;
     color: white;
     font-size: 12px;
-	padding-bottom: 5px;
-}
-.copyright1{
-	width: 100%;
-    background-color: #171219;
-    text-align: center;
-	padding-top: 15px;
-    color: white;
-    font-size: 12px;
-	padding-bottom: 5px;
-}
-.follow-me-icons {
-	font-size: 30px;
-}
-.follow-me-icons i {
-	float: left;
-	margin: 0 10px 0 0;
-	color: #f11d25;
-}
-.footer2 {
-	background: #000;
-	padding: 15px 0;
-	color: #aaa;
-	font-size: 12px;
-}
-.footer2 a {
-	color: #aaa;
-}
-.footer2 a:hover {
-	color: #fff;
-}
-.footer2 p {
-	margin: 0;
+	padding-bottom: 10px;
 }
 .contact ul {
 	padding: 0px;
@@ -715,23 +586,6 @@ footer .konten-footer-2 ul li a:hover {
 }
 footer ul li {
 	list-style: none;
-}
-#map-canvas {
-	height: 100%;
-	margin: 0px;
-	padding: 0px;
-}
-/* ------- */
-
-.isotopeWrapper article {
-	margin-bottom: 30px;
-}
-#portfolio img {
-	width: 100%;
-}
-#portfolio article p {
-	margin-bottom: 1.45em;
-	/*set next row on the baseline*/;
 }
 nav#filter {
 	margin-bottom: 1.5em;
@@ -756,80 +610,6 @@ nav#filter a.current {
 }
 .newsBox img {
 	width: 100% !important;
-}
-/*Da Slider*/
-.da-slider {
-	width: auto;
-	height: auto;
-	max-height: initial;
-	position: absolute;
-	top: 0px;
-	bottom: 0px;
-	right: 0px;
-	left: 0px;
-}
-.da-slide h2 {
-	text-align: left;
-	top: 15%;
-	font-weight: bold;
-}
-.da-slide p {
-	text-align: left;
-	top: 40%;
-	font-size: 30px;
-}
-.da-arrows span {
-	position: absolute;
-	top: 45%;
-}
-.da-dots span.da-dots-current:after {
-	content: '';
-	background: #f11d25;
-}
-.team-member {
-	padding-top: 5px;
-	margin-bottom: 15px;
-}
-.team-heading {
-	display: block;
-	width: 100%;
-}
-.member-img {
-	overflow: hidden;
-}
-.member-img img {
-	border-radius: 0px; 
-}
-.team-socials {
-	margin: 15px 0;
-	display: block;
-	text-align: center;
-}
-.team-socials i {
-	width: 35px;
-	height: 35px;
-	position: relative;
-	display: inline-block;
-	text-align: center;
-	font-size: 18px;
-	color: #0DC0C0;
-}
-.team-socials i:hover {
-	color: #4B5C5C;
-}
-.team-member h4 {
-	font-size: 19px;
-	line-height: 32px;
-	padding: 10px 0 0;
-	text-align: center;
-	margin: 0px;
-	color: #282828;
-}
-.team-member .pos {
-	display: block;
-	margin: 0;
-	text-align: center;
-	color: #ABABAB;
 }
 #head.secondary {
 	height: 625px;
@@ -872,63 +652,6 @@ body .container h4{
 body .container p{
 	font-size: 24px;
 	color: #171219;
-}
-.flat {
-	margin: 30px 0;
-}
-.flat .plan {
-	border-radius: 0px;
-	list-style: none;
-	padding: 0 0 10px;
-	margin: 0 0 25px;
-	background: rgba(3, 71, 50, 0.2);
-	text-align: center;
-	box-shadow: 0px 5px 5px rgba(251, 139, 36, 0.29) !important;
-}
-.flat .plan li {
-	padding: 10px 15px;
-	color: #ccc;
-	-webkit-transition: 300ms;
-	transition: 300ms;
-	border-top: 1px solid #034732;
-}
-.flat .plan li a{
-	text-decoration: none;
-	color:#171219;
-}
-.flat .plan li a:hover{
-	text-decoration: none;
-	color:#FB8B24;
-
-}
-.flat .plan li.plan-price {
-	border-top: 0;
-}
-.flat .plan li.plan-name {
-	border-radius: 0;
-	padding: 15px;
-	font-size: 24px;
-	line-height: 24px;
-	color: #EDF7D2;
-	background: #034732;
-	margin-bottom: 0px;
-	border-top: 0;
-}
-.flat .plan li > strong {
-	color: #6B6B6B;
-	font-weight: normal;
-}
-.flat .plan li.plan-action {
-	margin-top: 10px;
-	border-top: 0;
-}
-.flat .plan.featured {
-	-webkit-transform: scale(1.1);
-	-ms-transform: scale(1.1);
-	transform: scale(1.1);
-}
-.flat .plan.featured:hover li.plan-name, .flat .plan:hover li.plan-name, .flat .plan.featured.plan-name {
-	background: #FB8B24 !important;
 }
 .btn {
 	background: #87db4f;
@@ -1037,13 +760,6 @@ background: rgba(0, 25, 40, 0.4);
     }
 #camera_wrap_4, #head{
 height:380px !important;
-}
-.da-slide h2 {
-	font-size: 28px;
-}
-.da-slide p {
-	font-size: 19px;
-	font-weight: 400;
 }
 #head.secondary {
 height: 300px;
