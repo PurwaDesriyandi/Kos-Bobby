@@ -156,11 +156,6 @@
 
     <script>
 
-
-
-
-
-// Save form data to local storage and update the table
 function submit() {
     const date = document.getElementById('date').value;
     const kritiksaran = document.getElementById('kritiksaran').value;
@@ -172,29 +167,22 @@ function submit() {
 
     const formData = { date, kritiksaran };
 
-    // Get existing data from local storage
     let data = JSON.parse(localStorage.getItem('formData')) || [];
-    // Add new data to the array
     data.push(formData);
-    // Save updated array back to local storage
     localStorage.setItem('formData', JSON.stringify(data));
 
-    // Update the table
     addToTable(formData);
 
-    // Clear the form
     document.getElementById('rentalForm').reset();
 
     alert('Data saved successfully!');
 }
 
-// Load data from local storage and populate the table
 function loadFormData() {
     const data = JSON.parse(localStorage.getItem('formData')) || [];
     data.forEach(item => addToTable(item));
 }
 
-// Add a row to the table
 function addToTable(formData) {
     const table = document.getElementById("table");
     const row = table.insertRow(-1);
@@ -205,7 +193,6 @@ function addToTable(formData) {
     kritiksaranCell.textContent = formData.kritiksaran;
 }
 
-// Clear expired data from local storage (optional)
 function checkExpiration() {
     const expirationTime = localStorage.getItem('formDataExpiration');
     if (expirationTime && Date.now() > parseInt(expirationTime, 10)) {
@@ -215,12 +202,10 @@ function checkExpiration() {
     }
 }
 
-// Initialize check on window load and load existing data
 window.onload = function() {
     checkExpiration();
     loadFormData();
 };
 
-// Attach event listener to the button
 document.getElementById("submit").onclick = submit;
     </script>
