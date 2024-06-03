@@ -1,0 +1,243 @@
+<?php 
+    include('php/dbconnection.php');
+    if(isset($_POST['submit'])){
+        $name = $_POST['username'];
+        $handphone = $_POST['handphone'];
+        $address = $_POST['address'];
+
+        $stmt = $con->prepare("INSERT INTO data_kos(username, handphone, address) VALUES(?, ?)");
+        $stmt->bind_param("ss", $name, $handphone, $address);
+
+        if($stmt->execute()){
+            echo "<script>alert('Data inserted successfully');</script>";
+        } else {
+            echo "<script>alert('Error on inserting data');</script>";
+        }
+        $stmt->close();
+    }
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interior-Design-Responsive-Website-Templates-Edge">
+    <meta name="author" content="webThemez.com">
+    <title>Kos Putri Griya Barokah 2</title>
+    <link rel="favicon" href="assets/images/favicon.png">
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel='stylesheet' id='camera-css' href='assets/css/camera.css' type='text/css' media='all'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="assets/images/1.png" >
+</head>
+<body>
+    <header>
+            <div id="header-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            </div>
+                                <div class="col-md-6">
+                                    <div class="social text-center pull-right">
+                                        <a target="_blank" href="https://twitter.com/PEMKOT_SOLO"><i class="fa fa-twitter"></i></a>
+                                        <a target="_blank" href="https://www.facebook.com/pemkotsolo"><i class="fa fa-facebook"></i></a>
+                                        <a target="_blank" href="https://www.instagram.com/pemkot_solo/"><i class="fa fa-instagram"></i></a>
+                                        <a target="_blank" href="https://youtube.com/channel/UCL-EOcz_vh_2OlIMIh3zkyg"><i class="fa fa-youtube"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+                                class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                        <a class="navbar-brand" href="index.html">
+                            <img src="assets/images/Griya Barokah.png" alt="Logo Surakarta" style="height: 60px; width: 60px;"></a>
+                    </div>
+                    <div class="navbar-collapse collapse" >
+                        <ul class="nav navbar-nav pull-right mainNav">
+                            <li><a href="index.html">Beranda</a></li>
+                            <li><a href="about.html">Fasilitas</a></li>
+                            <li><a href="list.html">List Anggota Kos</a></li>
+                            <li class="active" ><a target="_blank" href="pesan.php">Pemesanan</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">menu lain <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="LoginAdmin.html">Login Admin</a></li>
+                                    <li><a href="Laporan.html">Laporan</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <header id="head" class="secondary secondary-2">
+            </header>
+            <div class="head-box">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2 class="text-center text-uppercase last" style=" margin-top: 15px;">Pemesanan Kos Putri Griya Barokah 2</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </header>
+    <section>
+        <div class="container" style="max-width:1000px; padding: 40px 100px; border-radius: 40px;  background-color: #ffffff;">
+            <form method ="post" class="form-horizontal" role="form" id="rentalForm">
+                <div class="form-group">
+                    <label for="name" class="col-sm-1">Nama</label>
+                    <input type="text" name="username" id="normal_input" class="form-control" placeholder="Nama Sesuai KTP">
+                </div>
+                <div class="form-group">
+                    <label for="phone_number" class="col-sm-3">No Handphone</label>
+                    <input type="number" class="handphone" id="phone_number" placeholder="No. Handphone">
+                </div>
+                <div class="form-group">
+                    <label for="address" class="col-sm-3">Alamat Domisili</label>
+                    <textarea name="address" class="form-control" id="address" rows="3" placeholder="Alamat Domisili"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="facilities" class="col-sm-4">Fasilitas Tambahan</label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="additional_facilities[]" value="Magicom"> Magicom</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" value="Kipas"> Kipas</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" value="Laptop"> Laptop</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" value="Kulkas"> Kulkas</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" value="Lain Lain"> Lain Lain
+                                <input type="text" class="form-control" id="other_facilities" placeholder="Lain Lain">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="room_type" class="col-sm-4">Tipe Kamar</label>
+                    <div class="col-sm-9">
+                        <div class="radio">
+                            <label><input type="radio" name="room_type" id="ac_room" value="AC"> AC</label>
+                            <label><input type="radio" name="room_type" id="non_ac_room" value="NON AC"> NON AC</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="date" class="col-sm-3">Tanggal Masuk</label>
+                    <input type="date" class="form-control" id="date">
+                </div>
+                <div class="form-group">
+                    <label for="rent_duration" class="col-sm-4">Waktu Sewa</label>
+                    <div class="col-sm-9">
+                        <div class="radio">
+                            <label><input type="radio" name="rent_duration" id="six_months" value="6 Bulan"> 6 Bulan</label>
+                            <label><input type="radio" name="rent_duration" id="twelve_months" value="12 Bulan"> 12 Bulan</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="penghuni" class="col-sm-4">Jumlah Penghuni</label>
+                    <div class="col-sm-9">
+                        <div class="radio">
+                            <label><input type="radio" name="penghuni" id="one_person" value="1 orang"> 1 orang</label>
+                            <label><input type="radio" name="penghuni" id="two_person" value="2 orang"> 2 orang</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="rent_duration" class="col-sm-4">Pilih No Kamar</label>
+                    <div class="col-sm-9">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="penghuni" id="one" value="1"> 1
+                            </label>
+                            <label>
+                                <input type="radio" name="penghuni" id="two" value="2"> 2
+                            </label>
+                            <label>
+                                <input type="radio" name="penghuni" id="three" value="2"> 3
+                            </label>
+                            <label>
+                                <input type="radio" name="penghuni" id="four" value="2"> 4
+                            </label>
+                            <label>
+                                <input type="radio" name="penghuni" id="five" value="2"> 5
+                            </label>
+                            <label>
+                                <input type="radio" name="penghuni" id="six" value="2"> 6
+                            </label>
+                            <label>
+                                <input type="radio" name="penghuni" id="seven" value="2"> 7
+                            </label>
+                            <label>
+                                <input type="radio" name="penghuni" id="eight" value="2"> 8
+                            </label>
+                            <label>
+                                <input type="radio" name="penghuni" id="nine" value="2"> 9
+                            </label>
+                            <label>
+                                <input type="radio" name="penghuni" id="ten" value="2"> 10
+                            </label>
+                            <label>
+                                <input type="radio" name="penghuni" id="eleven" value="2"> 11
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="saveForm()">Save</button>
+            </form>
+        </div>    
+    </section>
+    <footer class="footer-1">
+        <div class="konten-footer-1">
+            <img src="assets/images/Griya Barokah.png" alt="tes" style="height: 110px; width:110px; position: relative; top: 30px;" />
+            <p>
+                <P style="font-size: 20px; text-align: left;">GRIYA BAROKAH</P>
+                <p> Tanon Lor, RT 03/RW 02 Gedongan <br />
+                    Colomadu, Karanganyar.<br>
+                    Kode Pos 57173<br>
+                    0896-4995-5776</p>
+            </p>
+        </div>
+        <div class="garis"></div>
+        <div class="konten-footer-2">
+            <div class="konten-footer-2-list-1" style="margin-left: 10%;">
+                <h2 style="text-align: center; color: rgb(234, 250, 192);">Pengunjung</h2>
+                <div class="elfsight-app-096e9283-eb7e-4425-958c-188bdf46be1f" data-elfsight-app-lazy style="width: 200px;"></div>
+            </div>
+            <div class="konten-footer-2-list-2 " style="margin-right: 70px; ">
+                <h1 style="text-align: center; color: rgb(234, 250, 192);">MAP</h1>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.21283154501654!2d110.7711621674591!3d-7.53069549999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1478197db6fd%3A0x9d3f146680f2e612!2sFQ9C%2BPG8%2C%20Jl.%20Lor%20In%2C%20Tanon%20Kidul%2C%20Gedongan%2C%20Kec.%20Colomadu%2C%20Kabupaten%20Karanganyar%2C%20Jawa%20Tengah%2057174!5e0!3m2!1sen!2sid!4v1716356132796!5m2!1sen!2sid" 
+                width="295" height="289" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </footer>
+
+    <div class="copyright">
+        <img src="assets/images/Griya Barokah.png" style="height: 20px;"> UHUY CORPORATION
+    </div>
+    <script src="assets/js/modernizr-latest.js"></script>
+    <script type='text/javascript' src='assets/js/jquery.min.js'></script>
+    <script type='text/javascript' src='assets/js/fancybox/jquery.fancybox.pack.js'></script>
+    <script type='text/javascript' src='assets/js/jquery.mobile.customized.min.js'></script>
+    <script type='text/javascript' src='assets/js/jquery.easing.1.3.js'></script>
+    <script type='text/javascript' src='assets/js/camera.min.js'></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+    <script type ="text/javascript" src="assets/js/javascript.js"></script>
+</body>
+</html>
