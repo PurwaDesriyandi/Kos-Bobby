@@ -57,4 +57,35 @@
             alert('Saved data has expired and has been removed.');
         }
     }
+
     window.onload = checkExpiration;
+
+
+    function total() {
+        var total = 0;
+        
+        // Get the values of the checked radio buttons
+        var rentDuration = document.querySelector('input[name="rent_duration"]:checked');
+        var penghuni = document.querySelector('input[name="penghuni"]:checked');
+        var roomNumber = document.querySelector('input[name="penghuni"]:checked');
+        
+        // Add the values to the total
+        if (rentDuration) {
+          total += parseFloat(rentDuration.value);
+        }
+        if (penghuni) {
+          total += parseFloat(penghuni.value);
+        }
+        if (roomNumber) {
+          total += parseFloat(roomNumber.value);
+        }
+        
+        // Get the values of the checked checkboxes
+        var facilities = document.querySelectorAll('input[name="additional_facilities[]"]:checked');
+        facilities.forEach(function(facility) {
+          total += parseFloat(facility.value);
+        });
+        
+        // Display the total
+        document.getElementById('result').innerHTML = 'Total Harga: ' + total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+      }

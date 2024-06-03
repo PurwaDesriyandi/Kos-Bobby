@@ -93,22 +93,13 @@
                     <label for="facilities" class="col-sm-4">Fasilitas Tambahan</label>
                     <div class="col-sm-9">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="additional_facilities[]" value="Magicom"> Magicom</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" value="Kipas"> Kipas</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" value="Laptop"> Laptop</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" value="Kulkas"> Kulkas</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" value="Lain Lain"> Lain Lain
+                            <label><input type="checkbox" name="additional_facilities[]" value="25000"> Magicom</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" value="0"> Kipas</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" value="0"> Laptop</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" value="50000"> Kulkas</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" value="0"> Lain Lain
                                 <input type="text" class="form-control" id="other_facilities" placeholder="Lain Lain">
                             </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="room_type" class="col-sm-4">Tipe Kamar</label>
-                    <div class="col-sm-9">
-                        <div class="radio">
-                            <label><input type="radio" name="room_type" id="ac_room" value="AC"> AC</label>
-                            <label><input type="radio" name="room_type" id="non_ac_room" value="NON AC"> NON AC</label>
                         </div>
                     </div>
                 </div>
@@ -120,8 +111,8 @@
                     <label for="rent_duration" class="col-sm-4">Waktu Sewa</label>
                     <div class="col-sm-9">
                         <div class="radio">
-                            <label><input type="radio" name="rent_duration" id="six_months" value="6 Bulan"> 6 Bulan</label>
-                            <label><input type="radio" name="rent_duration" id="twelve_months" value="12 Bulan"> 12 Bulan</label>
+                            <label><input type="radio" name="rent_duration" id="six_months" value="4200000"> 6 Bulan</label>
+                            <label><input type="radio" name="rent_duration" id="twelve_months" value="8000000"> 12 Bulan</label>
                         </div>
                     </div>
                 </div>
@@ -129,8 +120,8 @@
                     <label for="penghuni" class="col-sm-4">Jumlah Penghuni</label>
                     <div class="col-sm-9">
                         <div class="radio">
-                            <label><input type="radio" name="penghuni" id="one_person" value="1 orang"> 1 orang</label>
-                            <label><input type="radio" name="penghuni" id="two_person" value="2 orang"> 2 orang</label>
+                            <label><input type="radio" name="penghuni" id="one_person" value="0"> 1 orang</label>
+                            <label><input type="radio" name="penghuni" id="two_person" value="75000"> 2 orang</label>
                         </div>
                     </div>
                 </div>
@@ -139,42 +130,44 @@
                     <div class="col-sm-9">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="penghuni" id="one" value="1"> 1
+                                <input type="radio" name="penghuni" id="one" value="0"> 1
                             </label>
                             <label>
-                                <input type="radio" name="penghuni" id="two" value="2"> 2
+                                <input type="radio" name="penghuni" id="two" value="0"> 2
                             </label>
                             <label>
-                                <input type="radio" name="penghuni" id="three" value="2"> 3
+                                <input type="radio" name="penghuni" id="three" value="0"> 3
                             </label>
                             <label>
-                                <input type="radio" name="penghuni" id="four" value="2"> 4
+                                <input type="radio" name="penghuni" id="four" value="0"> 4
                             </label>
                             <label>
-                                <input type="radio" name="penghuni" id="five" value="2"> 5
+                                <input type="radio" name="penghuni" id="five" value="0"> 5
                             </label>
                             <label>
-                                <input type="radio" name="penghuni" id="six" value="2"> 6
+                                <input type="radio" name="penghuni" id="six" value="0"> 6
                             </label>
                             <label>
-                                <input type="radio" name="penghuni" id="seven" value="2"> 7
+                                <input type="radio" name="penghuni" id="seven" value="0"> 7
                             </label>
                             <label>
-                                <input type="radio" name="penghuni" id="eight" value="2"> 8
+                                <input type="radio" name="penghuni" id="eight" value="0"> 8
                             </label>
                             <label>
-                                <input type="radio" name="penghuni" id="nine" value="2"> 9
+                                <input type="radio" name="penghuni" id="nine" value="0"> 9
                             </label>
                             <label>
-                                <input type="radio" name="penghuni" id="ten" value="2"> 10
+                                <input type="radio" name="penghuni" id="ten" value="0"> 10
                             </label>
                             <label>
-                                <input type="radio" name="penghuni" id="eleven" value="2"> 11
+                                <input type="radio" name="penghuni" id="eleven" value="0"> 11
                             </label>
                         </div>
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary" onclick="saveForm()">Save</button>
+                <button type="button" class="btn btn-primary" onclick="total()">Total Harga</button>
+                <h4 id="result">Total Harga:</h4>
             </div>
         </div>    
     </section>
@@ -219,5 +212,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
     <script type ="text/javascript" src="assets/js/javascript.js"></script>
-</body>
+    
+</body> 
 </html>
