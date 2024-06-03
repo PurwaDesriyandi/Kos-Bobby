@@ -60,32 +60,33 @@
 
     window.onload = checkExpiration;
 
-
-    function total() {
+    
+        
+      function total() {
         var total = 0;
         
         // Get the values of the checked radio buttons
         var rentDuration = document.querySelector('input[name="rent_duration"]:checked');
-        var penghuni = document.querySelector('input[name="penghuni"]:checked');
-        var roomNumber = document.querySelector('input[name="penghuni"]:checked');
-        
-        // Add the values to the total
-        if (rentDuration) {
-          total += parseFloat(rentDuration.value);
-        }
-        if (penghuni) {
-          total += parseFloat(penghuni.value);
-        }
-        if (roomNumber) {
-          total += parseFloat(roomNumber.value);
-        }
+        var Penghuni = document.querySelector('input[name="penghuni"]:checked');
         
         // Get the values of the checked checkboxes
         var facilities = document.querySelectorAll('input[name="additional_facilities[]"]:checked');
-        facilities.forEach(function(facility) {
-          total += parseFloat(facility.value);
+        
+        // Calculate the total cost
+        if (rentDuration) {
+          total += parseFloat(rentDuration.value) ;
+        }
+        if (Penghuni) {
+          total += parseFloat(Penghuni.value);
+        }
+        facilities.forEach(function(facilities) {
+          total += parseFloat(facilities.value) * parseFloat(rentDuration.id);
         });
         
+        // Penghuni.forEach(function(Penghuni) {
+        //     total += parseFloat(Penghuni.value) * parseFloat(rentDuration.id);
+        //   });
+          
         // Display the total
-        document.getElementById('result').innerHTML = 'Total Harga: ' + total.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+        document.getElementById('result').innerHTML = 'Total Harga: ' + total.toLocaleString ('id-ID', { style: 'currency', currency: 'IDR' });
       }
