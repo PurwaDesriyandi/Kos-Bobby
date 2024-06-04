@@ -65,28 +65,16 @@
       function total() {
         var total = 0;
         
-        // Get the values of the checked radio buttons
         var rentDuration = document.querySelector('input[name="rent_duration"]:checked');
         var Penghuni = document.querySelector('input[name="penghuni"]:checked');
-        
-        // Get the values of the checked checkboxes
         var facilities = document.querySelectorAll('input[name="additional_facilities[]"]:checked');
         
-        // Calculate the total cost
         if (rentDuration) {
           total += parseFloat(rentDuration.value) ;
-        }
-        if (Penghuni) {
-          total += parseFloat(Penghuni.value);
         }
         facilities.forEach(function(facilities) {
           total += parseFloat(facilities.value) * parseFloat(rentDuration.id);
         });
         
-        // Penghuni.forEach(function(Penghuni) {
-        //     total += parseFloat(Penghuni.value) * parseFloat(rentDuration.id);
-        //   });
-          
-        // Display the total
         document.getElementById('result').innerHTML = 'Total Harga: ' + total.toLocaleString ('id-ID', { style: 'currency', currency: 'IDR' });
       }
