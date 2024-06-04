@@ -62,7 +62,7 @@
 
     
         
-        function total() {
+    function total() {
         var total = 0;
         
         var rentDuration = document.querySelector('input[name="rent_duration"]:checked');
@@ -79,24 +79,33 @@
         document.getElementById('result').innerHTML = 'Total Harga: ' + total.toLocaleString ('id-ID', { style: 'currency', currency: 'IDR' });
 
     }
-        document.getElementById('whatsappButton').addEventListener('click', function() {
-            var name = document.getElementById('name').value;
-            var phone_number = document.getElementById('phone_number').value;
-            var address = document.getElementById('address').value;
-            var additional_facilities = Array.from(document.querySelectorAll('input[name="additional_facilities[]"]:checked')).map(el => el.value).join(', ');
-            var date = document.getElementById('date').value;
-            var rent_duration = document.querySelector('input[name="rent_duration"]:checked') ? document.querySelector('input[name="rent_duration"]:checked').value : '';
-            var nokamar = document.querySelector('input[name="nokamar"]:checked') ? document.querySelector('input[name="nokamar"]:checked').value : '';
+    function saveForm(){
+        var name = document.getElementById('name').value;
+        var phone_number = document.getElementById('phone_number').value;
+        var address = document.getElementById('address').value;
+        var additional_facilities_checked = Array.from(document.querySelectorAll('input[name="additional_facilities[]"]:checked')).map(el => el.id);
+        var additional_facilities_prices = Array.from(document.querySelectorAll('input[name="additional_facilities[]"]:checked')).map(el => el.value);
+        var additional_facilities_info = [];
+        for (var i = 0; i < additional_facilities_checked.length; i++) {
+            additional_facilities_info.push(additional_facilities_checked[i] + ' (Rp. ' + additional_facilities_prices[i] + ')');
+        }
+        var date = document.getElementById('date').value;
+        var total_sewa = document.querySelector('input[name="rent_duration"]:checked') ? document.querySelector('input[name="rent_duration"]:checked').id : '';
+        var rent_duration = document.querySelector('input[name="rent_duration"]:checked') ? document.querySelector('input[name="rent_duration"]:checked').value : '';
+        var nokamar = document.querySelector('input[name="nokamar"]:checked') ? document.querySelector('input[name="nokamar"]:checked').id : '';
+        total();
+        var total_price= document.getElementById('result').textContent.replace('Total Harga:', '')
 
-            var whatsappMessage = `*Pemesanan Kos Putri Griya Barokah 2*\n\n` +
-                `*Nama:* ${name}\n` +
-                `*No Handphone:* ${phone_number}\n` +
-                `*Alamat Domisili:* ${address}\n` +
-                `*Fasilitas Tambahan:* ${additional_facilities}\n` +
-                `*Tanggal Masuk:* ${date}\n` +
-                `*Waktu Sewa:* ${rent_duration}\n` +
-                `*Pilih No Kamar:* ${nokamar}`;
+        var whatsappMessage = `*Pemesanan Kos Putri Griya Barokah 2*\n\n` +
+            `*Nama:* ${name}\n` +
+            `*No Handphone:* ${phone_number}\n` +
+            `*Alamat Domisili:* ${address}\n` +
+            `*Fasilitas Tambahan:* ${additional_facilities_info.join(', ')}\n` + 
+            `*Tanggal Masuk:* ${date}\n` +
+            `*Waktu Sewa:* ${total_sewa} Bulan = Rp. ${rent_duration} \n` +
+            `*Pilih No Kamar:* ${nokamar}\n` +
+            `*Total Harga Sewa: Rp. ${total_price}*`;
 
-            var whatsappUrl = `https://wa.me/6282233809069?text=${encodeURIComponent(whatsappMessage)}`;
-            window.open(whatsappUrl, '_blank');
-        });
+        var whatsappUrl = `https://wa.me/6282256430291?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappUrl, '_blank');
+    };
