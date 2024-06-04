@@ -79,7 +79,7 @@
             <form class="form-horizontal" role="form" id="rentalForm">
                 <div class="form-group">
                     <label for="name" class="col-sm-1">Nama</label>
-                    <input type="text" name="normal_input" id="normal_input" class="form-control" placeholder="Nama Sesuai KTP">
+                    <input type="text" name="normal_input" id="name" class="form-control" placeholder="Nama Sesuai KTP">
                 </div>
                 <div class="form-group">
                     <label for="phone_number" class="col-sm-3">No Handphone</label>
@@ -121,37 +121,37 @@
                     <div class="col-sm-9">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="no" id="one"> 1
+                                <input type="radio" name="nokamar" id="one"> 1
                             </label>
                             <label>
-                                <input type="radio" name="no" id="two"> 2
+                                <input type="radio" name="nokamar" id="two"> 2
                             </label>
                             <label>
-                                <input type="radio" name="no" id="three"> 3
+                                <input type="radio" name="nokamar" id="three"> 3
                             </label>
                             <label>
-                                <input type="radio" name="no" id="four"> 4
+                                <input type="radio" name="nokamar" id="four"> 4
                             </label>
                             <label>
-                                <input type="radio" name="no" id="five"> 5
+                                <input type="radio" name="nokamar" id="five"> 5
                             </label>
                             <label>
-                                <input type="radio" name="no" id="six"> 6
+                                <input type="radio" name="nokamar" id="six"> 6
                             </label>
                             <label>
-                                <input type="radio" name="no" id="seven"> 7
+                                <input type="radio" name="nokamar" id="seven"> 7
                             </label>
                             <label>
-                                <input type="radio" name="no" id="eight"> 8
+                                <input type="radio" name="nokamar" id="eight"> 8
                             </label>
                             <label>
-                                <input type="radio" name="no" id="nine"> 9
+                                <input type="radio" name="nokamar" id="nine"> 9
                             </label>
                             <label>
-                                <input type="radio" name="no" id="ten"> 10
+                                <input type="radio" name="nokamar" id="ten"> 10
                             </label>
                             <label>
-                                <input type="radio" name="no" id="eleven"> 11
+                                <input type="radio" name="nokamar" id="eleven"> 11
                             </label>
                         </div>
                     </div>
@@ -205,5 +205,29 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
     <script type ="text/javascript" src="assets/js/javascript.js"></script>
+    <script>
+        document.getElementById('whatsappButton').addEventListener('click', function() {
+            var name = document.getElementById('name').value;
+            var phone_number = document.getElementById('phone_number').value;
+            var address = document.getElementById('address').value;
+            var additional_facilities = Array.from(document.querySelectorAll('input[name="additional_facilities[]"]:checked')).map(el => el.value).join(', ');
+            var date = document.getElementById('date').value;
+            var rent_duration = document.querySelector('input[name="rent_duration"]:checked') ? document.querySelector('input[name="rent_duration"]:checked').value : '';
+            var nokamar = document.querySelector('input[name="nokamar"]:checked') ? document.querySelector('input[name="nokamar"]:checked').value : '';
+
+            var whatsappMessage = `*Pemesanan Kos Putri Griya Barokah 2*\n\n` +
+                `*Nama:* ${name}\n` +
+                `*No Handphone:* ${phone_number}\n` +
+                `*Alamat Domisili:* ${address}\n` +
+                `*Fasilitas Tambahan:* ${additional_facilities}\n` +
+                `*Tanggal Masuk:* ${date}\n` +
+                `*Waktu Sewa:* ${rent_duration}\n` +
+                `*Pilih No Kamar:* ${nokamar}`;
+
+            var whatsappUrl = `https://wa.me/6282233809069?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappUrl, '_blank');
+        });
+
+    </script>
 </body> 
 </html>
