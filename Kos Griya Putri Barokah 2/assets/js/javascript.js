@@ -62,7 +62,7 @@
 
     
         
-      function total() {
+        function total() {
         var total = 0;
         
         var rentDuration = document.querySelector('input[name="rent_duration"]:checked');
@@ -70,11 +70,33 @@
         var facilities = document.querySelectorAll('input[name="additional_facilities[]"]:checked');
         
         if (rentDuration) {
-          total += parseFloat(rentDuration.value) ;
+            total += parseFloat(rentDuration.value) ;
         }
         facilities.forEach(function(facilities) {
-          total += parseFloat(facilities.value) * parseFloat(rentDuration.id);
+            total += parseFloat(facilities.value) * parseFloat(rentDuration.id);
         });
         
         document.getElementById('result').innerHTML = 'Total Harga: ' + total.toLocaleString ('id-ID', { style: 'currency', currency: 'IDR' });
-      }
+
+    }
+        document.getElementById('whatsappButton').addEventListener('click', function() {
+            var name = document.getElementById('name').value;
+            var phone_number = document.getElementById('phone_number').value;
+            var address = document.getElementById('address').value;
+            var additional_facilities = Array.from(document.querySelectorAll('input[name="additional_facilities[]"]:checked')).map(el => el.value).join(', ');
+            var date = document.getElementById('date').value;
+            var rent_duration = document.querySelector('input[name="rent_duration"]:checked') ? document.querySelector('input[name="rent_duration"]:checked').value : '';
+            var nokamar = document.querySelector('input[name="nokamar"]:checked') ? document.querySelector('input[name="nokamar"]:checked').value : '';
+
+            var whatsappMessage = `*Pemesanan Kos Putri Griya Barokah 2*\n\n` +
+                `*Nama:* ${name}\n` +
+                `*No Handphone:* ${phone_number}\n` +
+                `*Alamat Domisili:* ${address}\n` +
+                `*Fasilitas Tambahan:* ${additional_facilities}\n` +
+                `*Tanggal Masuk:* ${date}\n` +
+                `*Waktu Sewa:* ${rent_duration}\n` +
+                `*Pilih No Kamar:* ${nokamar}`;
+
+            var whatsappUrl = `https://wa.me/6282233809069?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappUrl, '_blank');
+        });
