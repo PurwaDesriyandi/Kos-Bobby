@@ -1,22 +1,27 @@
-<?php 
+<?php
     include('php/dbconnection.php');
-    if(isset($_POST['submit'])){
-        $name = $_POST['username'];
-        $handphone = $_POST['handphone'];
+
+    if (isset($_POST['submit'])) {
+        $name = $_POST['name'];
+        $phone = $_POST['phone'];
         $address = $_POST['address'];
+        $facilities = implode(',', $_POST['facilities']); 
+        $date = $_POST['date'];
+        $duration = $_POST['duration'];
+        $room = $_POST['room'];
 
-        $stmt = $con->prepare("INSERT INTO data_kos(username, handphone, address) VALUES(?, ?)");
-        $stmt->bind_param("ss", $name, $handphone, $address);
+        $stmt = $con->prepare("INSERT INTO data_kos (nama, nomor_hp, alamat, fasilitas, tanggal, sewa_bulan, no_kamar) VALUES (?,?,?,?,?,?,?)");
+        $stmt->bind_param("sssssii", $name, $phone, $address, $facilities, $date, $duration, $room);
 
-        if($stmt->execute()){
-            echo "<script>alert('Data inserted successfully');</script>";
+        if ($stmt->execute()) {
+            echo "Data inserted successfully";
         } else {
-            echo "<script>alert('Error on inserting data');</script>";
+            echo "Error: ". $stmt->error;
         }
         $stmt->close();
-    }
+}
+    $con->close();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +104,7 @@
             <form class="form-horizontal" role="form" id="rentalForm">
                 <div class="form-group">
                     <label for="name" class="col-sm-1">Nama</label>
-                    <input type="text" name="normal_input" id="normal_input" class="form-control" placeholder="Nama Sesuai KTP">
+                    <input type="text" name="normal_input" id="name" class="form-control" placeholder="Nama Sesuai KTP">
                 </div>
                 <div class="form-group">
                     <label for="phone_number" class="col-sm-3">No Handphone</label>
@@ -113,11 +118,11 @@
                     <label for="facilities" class="col-sm-4">Fasilitas Tambahan</label>
                     <div class="col-sm-9">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="additional_facilities[]" value="25000"> Magicom</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" value="0"> Kipas</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" value="0"> Laptop</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" value="50000"> Kulkas</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" value="0"> Lain Lain
+                            <label><input type="checkbox" name="additional_facilities[]" id="Magicom" value="25000"> Magicom</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" id="Kipas" value="0"> Kipas</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" id="Laptop" value="0"> Laptop</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" id="Kulkas" value="50000"> Kulkas</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" id="Lain Lain" value="0"> Lain Lain
                                 <input type="text" class="form-control" id="other_facilities" placeholder="Lain Lain">
                             </label>
                         </div>
@@ -141,43 +146,43 @@
                     <div class="col-sm-9">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="no" id="one"> 1
+                                <input type="radio" name="nokamar" id="1"> 1
                             </label>
                             <label>
-                                <input type="radio" name="no" id="two"> 2
+                                <input type="radio" name="nokamar" id="2"> 2
                             </label>
                             <label>
-                                <input type="radio" name="no" id="three"> 3
+                                <input type="radio" name="nokamar" id="3"> 3
                             </label>
                             <label>
-                                <input type="radio" name="no" id="four"> 4
+                                <input type="radio" name="nokamar" id="4"> 4
                             </label>
                             <label>
-                                <input type="radio" name="no" id="five"> 5
+                                <input type="radio" name="nokamar" id="5"> 5
                             </label>
                             <label>
-                                <input type="radio" name="no" id="six"> 6
+                                <input type="radio" name="nokamar" id="6"> 6
                             </label>
                             <label>
-                                <input type="radio" name="no" id="seven"> 7
+                                <input type="radio" name="nokamar" id="7"> 7
                             </label>
                             <label>
-                                <input type="radio" name="no" id="eight"> 8
+                                <input type="radio" name="nokamar" id="8"> 8
                             </label>
                             <label>
-                                <input type="radio" name="no" id="nine"> 9
+                                <input type="radio" name="nokamar" id="9"> 9
                             </label>
                             <label>
-                                <input type="radio" name="no" id="ten"> 10
+                                <input type="radio" name="nokamar" id="10"> 10
                             </label>
                             <label>
-                                <input type="radio" name="no" id="eleven"> 11
+                                <input type="radio" name="nokamar" id="11"> 11
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="button" id="whatsappButton" class="btn btn-success" onclick="saveForm()">Save</button>
+                    <button type="button" id="whatsappButton submitButton" class="btn btn-success" onclick="saveForm()">Save</button>
                     <button type="button" class="btn btn-primary" onclick="total()">Total Harga</button>
                     <h4 id="result">Total Harga:</h4>
                 </div>
@@ -224,6 +229,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-    <script type ="text/javascript" src="assets/js/javascript.js"></script>
+    <script type ='text/javascript' src='assets/js/javascript.js'></script>
+    <script>
+            document.getElementById('rentalForm').addEventListener('submit', function(event) {
+                event.preventDefault(); 
+
+                var name = document.getElementById('name').value;
+                var phone = document.getElementById('phone').value;
+                var address = document.getElementById('address').value;
+                var facilities = Array.from(document.querySelectorAll('input[name="facilities"]:checked')).map(function(input) {
+                    return input.value;
+                });
+                var date = document.getElementById('date').value;
+                var duration = document.getElementById('duration').value;
+                var room = document.getElementById('room').value;
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'your_php_file.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        console.log(xhr.responseText);
+                    } else {
+                        console.error('Error: ' + xhr.status);
+                    }
+                };
+                xhr.send('name=' + encodeURIComponent(name) +
+                        '&phone=' + encodeURIComponent(phone) +
+                        '&address=' + encodeURIComponent(address) +
+                        '&facilities=' + encodeURIComponent(facilities.join(',')) +
+                        '&date=' + encodeURIComponent(date) +
+                        '&duration=' + encodeURIComponent(duration) +
+                        '&room=' + encodeURIComponent(room));
+            });
+    </script>
 </body> 
 </html>
