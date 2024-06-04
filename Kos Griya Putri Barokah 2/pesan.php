@@ -70,7 +70,7 @@
                             <li><a href="index.html">Beranda</a></li>
                             <li><a href="about.html">Fasilitas</a></li>
                             <li><a href="list.html">List Anggota Kos</a></li>
-                            <li class="active" ><a target="_blank" href="pesan.php">Pemesanan</a></li>
+                            <li class="active" ><a target="_blank" href="pemesanan.html">Pemesanan</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">menu lain <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -96,39 +96,30 @@
     </header>
     <section>
         <div class="container" style="max-width:1000px; padding: 40px 100px; border-radius: 40px;  background-color: #ffffff;">
-            <form method ="post" class="form-horizontal" role="form" id="rentalForm">
+            <form class="form-horizontal" role="form" id="rentalForm">
                 <div class="form-group">
                     <label for="name" class="col-sm-1">Nama</label>
-                    <input type="text" name="username" id="normal_input" class="form-control" placeholder="Nama Sesuai KTP">
+                    <input type="text" name="normal_input" id="normal_input" class="form-control" placeholder="Nama Sesuai KTP">
                 </div>
                 <div class="form-group">
                     <label for="phone_number" class="col-sm-3">No Handphone</label>
-                    <input type="number" class="handphone" id="phone_number" placeholder="No. Handphone">
+                    <input type="number" class="form-control" id="phone_number" placeholder="No. Handphone">
                 </div>
                 <div class="form-group">
                     <label for="address" class="col-sm-3">Alamat Domisili</label>
-                    <textarea name="address" class="form-control" id="address" rows="3" placeholder="Alamat Domisili"></textarea>
+                    <textarea class="form-control" id="address" rows="3" placeholder="Alamat Domisili"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="facilities" class="col-sm-4">Fasilitas Tambahan</label>
                     <div class="col-sm-9">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="additional_facilities[]" value="Magicom"> Magicom</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" value="Kipas"> Kipas</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" value="Laptop"> Laptop</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" value="Kulkas"> Kulkas</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" value="Lain Lain"> Lain Lain
+                            <label><input type="checkbox" name="additional_facilities[]" value="25000"> Magicom</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" value="0"> Kipas</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" value="0"> Laptop</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" value="50000"> Kulkas</label><br>
+                            <label><input type="checkbox" name="additional_facilities[]" value="0"> Lain Lain
                                 <input type="text" class="form-control" id="other_facilities" placeholder="Lain Lain">
                             </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="room_type" class="col-sm-4">Tipe Kamar</label>
-                    <div class="col-sm-9">
-                        <div class="radio">
-                            <label><input type="radio" name="room_type" id="ac_room" value="AC"> AC</label>
-                            <label><input type="radio" name="room_type" id="non_ac_room" value="NON AC"> NON AC</label>
                         </div>
                     </div>
                 </div>
@@ -140,62 +131,57 @@
                     <label for="rent_duration" class="col-sm-4">Waktu Sewa</label>
                     <div class="col-sm-9">
                         <div class="radio">
-                            <label><input type="radio" name="rent_duration" id="six_months" value="6 Bulan"> 6 Bulan</label>
-                            <label><input type="radio" name="rent_duration" id="twelve_months" value="12 Bulan"> 12 Bulan</label>
+                            <label><input type="radio" name="rent_duration" id="6" value="4200000"> 6 Bulan</label>
+                            <label><input type="radio" name="rent_duration" id="12" value="8000000"> 12 Bulan</label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="penghuni" class="col-sm-4">Jumlah Penghuni</label>
+                    <label for="nokamar" class="col-sm-4">Pilih No Kamar</label>
                     <div class="col-sm-9">
                         <div class="radio">
-                            <label><input type="radio" name="penghuni" id="one_person" value="1 orang"> 1 orang</label>
-                            <label><input type="radio" name="penghuni" id="two_person" value="2 orang"> 2 orang</label>
+                            <label>
+                                <input type="radio" name="no" id="one"> 1
+                            </label>
+                            <label>
+                                <input type="radio" name="no" id="two"> 2
+                            </label>
+                            <label>
+                                <input type="radio" name="no" id="three"> 3
+                            </label>
+                            <label>
+                                <input type="radio" name="no" id="four"> 4
+                            </label>
+                            <label>
+                                <input type="radio" name="no" id="five"> 5
+                            </label>
+                            <label>
+                                <input type="radio" name="no" id="six"> 6
+                            </label>
+                            <label>
+                                <input type="radio" name="no" id="seven"> 7
+                            </label>
+                            <label>
+                                <input type="radio" name="no" id="eight"> 8
+                            </label>
+                            <label>
+                                <input type="radio" name="no" id="nine"> 9
+                            </label>
+                            <label>
+                                <input type="radio" name="no" id="ten"> 10
+                            </label>
+                            <label>
+                                <input type="radio" name="no" id="eleven"> 11
+                            </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="rent_duration" class="col-sm-4">Pilih No Kamar</label>
-                    <div class="col-sm-9">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="penghuni" id="one" value="1"> 1
-                            </label>
-                            <label>
-                                <input type="radio" name="penghuni" id="two" value="2"> 2
-                            </label>
-                            <label>
-                                <input type="radio" name="penghuni" id="three" value="2"> 3
-                            </label>
-                            <label>
-                                <input type="radio" name="penghuni" id="four" value="2"> 4
-                            </label>
-                            <label>
-                                <input type="radio" name="penghuni" id="five" value="2"> 5
-                            </label>
-                            <label>
-                                <input type="radio" name="penghuni" id="six" value="2"> 6
-                            </label>
-                            <label>
-                                <input type="radio" name="penghuni" id="seven" value="2"> 7
-                            </label>
-                            <label>
-                                <input type="radio" name="penghuni" id="eight" value="2"> 8
-                            </label>
-                            <label>
-                                <input type="radio" name="penghuni" id="nine" value="2"> 9
-                            </label>
-                            <label>
-                                <input type="radio" name="penghuni" id="ten" value="2"> 10
-                            </label>
-                            <label>
-                                <input type="radio" name="penghuni" id="eleven" value="2"> 11
-                            </label>
-                        </div>
-                    </div>
+                    <button type="button" id="whatsappButton" class="btn btn-success" onclick="saveForm()">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="total()">Total Harga</button>
+                    <h4 id="result">Total Harga:</h4>
                 </div>
-                <button type="button" class="btn btn-primary" onclick="saveForm()">Save</button>
-            </form>
+            </div>
         </div>    
     </section>
     <footer class="footer-1">
@@ -239,5 +225,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
     <script type ="text/javascript" src="assets/js/javascript.js"></script>
-</body>
+</body> 
 </html>
