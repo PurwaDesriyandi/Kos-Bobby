@@ -1,3 +1,26 @@
+<?php 
+    include('assets/php/dbconnection.php');
+    $storedDate = "";
+    $storedKritik = "";
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $tanggal = mysqli_real_escape_string($con, $_REQUEST['tanggal']);
+        $kritik = mysqli_real_escape_string($con, $_REQUEST['kritik']);
+
+        $sql = "INSERT INTO kritik_saran (tanggal, kritik) VALUES ('$tanggal', '$kritik')";
+
+        if (mysqli_query($con, $sql)) {
+            $storedDate = $tanggal;
+            $storedKritik = $kritik;
+        } else {
+            echo "ERROR: Hush! Sorry $sql. "
+                . mysqli_error($con);
+        }
+        mysqli_close($con);
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,7 +101,6 @@
             </div>
         </div>
     </div>
-</body>
 
 <section>
     <div class="section-heading">
@@ -86,17 +108,26 @@
     </div>
     <div class="container"
         style="max-width:1000px; padding: 40px 100px; border-radius: 40px;  background-color: #ffffff;">
-        <form class="form-horizontal" role="form" id="rentalForm">
+        <form method="POST" class="form-horizontal" role="form" id="rentalForm">
             <div class="form-group">
                 <label for="date" class="col-sm-1">Tanggal</label>
-                <input type="date" name="normal_input" id="date" class="form-control" placeholder="Tanggal">
+                <input type="date" name="tanggal" id="date" class="form-control" placeholder="tanggal">
             </div>
             <div class="form-group">
                 <label for="kritiksaran" class="col-sm-3">Kritik Saran</label>
-                <textarea class="form-control" id="kritiksaran" rows="3" placeholder="Kritik Saran"></textarea>
+                <textarea class="form-control" name="kritik" id="kritiksaran" rows="3" placeholder="kritik"></textarea>
             </div>
+            <button type="submit button" id="submit" value="submit" class="btn btn-primary">Submit</button>
         </form>
-        <button type="button" id="submit" value="submit" class="btn btn-primary">Submit</button>
+    </div>
+</section>
+<section>
+    <div class="container" id="echoMessage">
+        <div class="box-list">
+            <?php if(!empty($storedDate) && !empty($storedKritik)): ?>
+                <h4 style="font-weight: bold; color: #4B6363; text-align: center;">Data stored in a database successfully.</h4>
+            <?php endif; ?>
+        </div>
     </div>
 </section>
 
@@ -164,7 +195,6 @@
 <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
 
 <script>
-
     function submit() {
         const date = document.getElementById('date').value;
         const kritiksaran = document.getElementById('kritiksaran').value;
@@ -218,3 +248,10 @@
 
     document.getElementById("submit").onclick = submit;
 </script>
+<script>
+    setTimeout(function() {
+        document.getElementById('echoMessage').style.display = 'none';
+    }, 4000);
+</script>
+</body>
+</html>
