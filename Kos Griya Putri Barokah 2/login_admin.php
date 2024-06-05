@@ -1,7 +1,6 @@
-
 <?php 
-    include('php/dbconnection.php');
-    $stmt = null; // Initialize $stmt outside the if block
+    include('assets/php/dbconnection.php');
+    $stmt = null;
 
     if(isset($_POST['submit'])){
         $username = $_POST['username'];

@@ -1,27 +1,28 @@
 <?php
-    include('php/dbconnection.php');
+    include('assets/php/dbconnection.php');
 
-    if (isset($_POST['submit'])) {
-        $name = $_POST['name'];
-        $phone = $_POST['phone'];
-        $address = $_POST['address'];
-        $facilities = implode(',', $_POST['facilities']); 
-        $date = $_POST['date'];
-        $duration = $_POST['duration'];
-        $room = $_POST['room'];
+    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POST['phone_number']) && isset($_POST['address']) && isset($_POST['date']) && isset($_POST['rent_duration']) && isset($_POST['nokamar'])) {
+        $nama = mysqli_real_escape_string($con, $_POST['name']);
+        $nomor_hp = mysqli_real_escape_string($con, $_POST['phone_number']);
+        $alamat = mysqli_real_escape_string($con, $_POST['address']);
+        $fasilitas = isset($_POST['additional_facilities']) ? mysqli_real_escape_string($con, implode(", ", $_POST['additional_facilities'])) : '';
+        $tanggal = mysqli_real_escape_string($con, $_POST['date']);
+        $sewa_bulan = mysqli_real_escape_string($con, $_POST['rent_duration']);
+        $no_kamar = mysqli_real_escape_string($con, $_POST['nokamar']);
 
-        $stmt = $con->prepare("INSERT INTO data_kos (nama, nomor_hp, alamat, fasilitas, tanggal, sewa_bulan, no_kamar) VALUES (?,?,?,?,?,?,?)");
-        $stmt->bind_param("sssssii", $name, $phone, $address, $facilities, $date, $duration, $room);
-
-        if ($stmt->execute()) {
-            echo "Data inserted successfully";
-        } else {
-            echo "Error: ". $stmt->error;
+        $sql = "INSERT INTO data_kos (nama, nomor_hp, alamat, fasilitas, tanggal, sewa_bulan, no_kamar) VALUES ('$nama', '$nomor_hp', '$alamat', '$fasilitas', '$tanggal', '$sewa_bulan', '$no_kamar')";
+        if(mysqli_query($con, $sql)){
+            echo "Records added successfully.";
+        } else{
+            echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
         }
-        $stmt->close();
-}
-    $con->close();
+    } else {
+        echo "One or more required fields are missing.";
+    }
+    mysqli_close($con);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +76,7 @@
                             <li><a href="index.html">Beranda</a></li>
                             <li><a href="about.html">Fasilitas</a></li>
                             <li><a href="list.html">List Anggota Kos</a></li>
-                            <li class="active" ><a target="_blank" href="pemesanan.html">Pemesanan</a></li>
+                            <li class="active" ><a href="pesan.php">Pemesanan</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">menu lain <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
@@ -101,28 +102,28 @@
     </header>
     <section>
         <div class="container" style="max-width:1000px; padding: 40px 100px; border-radius: 40px;  background-color: #ffffff;">
-            <form class="form-horizontal" role="form" id="rentalForm">
+            <form method="POST" class="form-horizontal" role="form" id="rentalForm">
                 <div class="form-group">
                     <label for="name" class="col-sm-1">Nama</label>
-                    <input type="text" name="normal_input" id="name" class="form-control" placeholder="Nama Sesuai KTP">
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Nama Sesuai KTP">
                 </div>
                 <div class="form-group">
                     <label for="phone_number" class="col-sm-3">No Handphone</label>
-                    <input type="number" class="form-control" id="phone_number" placeholder="No. Handphone">
+                    <input type="number" name="phone_number" class="form-control" id="phone_number" placeholder="No. Handphone">
                 </div>
                 <div class="form-group">
                     <label for="address" class="col-sm-3">Alamat Domisili</label>
-                    <textarea class="form-control" id="address" rows="3" placeholder="Alamat Domisili"></textarea>
+                    <textarea class="form-control" name="address" id="address" rows="3" placeholder="Alamat Domisili"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="facilities" class="col-sm-4">Fasilitas Tambahan</label>
                     <div class="col-sm-9">
                         <div class="checkbox">
-                            <label><input type="checkbox" name="additional_facilities[]" id="Magicom" value="25000"> Magicom</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" id="Kipas" value="0"> Kipas</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" id="Laptop" value="0"> Laptop</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" id="Kulkas" value="50000"> Kulkas</label><br>
-                            <label><input type="checkbox" name="additional_facilities[]" id="Lain Lain" value="0"> Lain Lain
+                        <label><input type="checkbox" name="additional_facilities[]" value="Magicom" id="25000"> Magicom</label><br>
+                        <label><input type="checkbox" name="additional_facilities[]" value="Kipas" id="0"> Kipas</label><br>
+                        <label><input type="checkbox" name="additional_facilities[]" value="Laptop" id="0"> Laptop</label><br>
+                        <label><input type="checkbox" name="additional_facilities[]" value="Kulkas" id="50000"> Kulkas</label><br>
+                        <label><input type="checkbox" name="additional_facilities[]" value="Lain Lain" id="0"> Lain Lain</label>
                                 <input type="text" class="form-control" id="other_facilities" placeholder="Lain Lain">
                             </label>
                         </div>
@@ -130,14 +131,14 @@
                 </div>
                 <div class="form-group">
                     <label for="date" class="col-sm-3">Tanggal Masuk</label>
-                    <input type="date" class="form-control" id="date">
+                    <input type="date" name="date" class="form-control" id="date">
                 </div>
                 <div class="form-group">
                     <label for="rent_duration" class="col-sm-4">Waktu Sewa</label>
                     <div class="col-sm-9">
                         <div class="radio">
-                            <label><input type="radio" name="rent_duration" id="6" value="4200000"> 6 Bulan</label>
-                            <label><input type="radio" name="rent_duration" id="12" value="8000000"> 12 Bulan</label>
+                        <label><input type="radio" name="rent_duration" value="6" id="4200000"> 6 Bulan</label>
+                        <label><input type="radio" name="rent_duration" value="12" id="8000000"> 12 Bulan</label>
                         </div>
                     </div>
                 </div>
@@ -146,43 +147,43 @@
                     <div class="col-sm-9">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="nokamar" id="1"> 1
+                                <input type="radio" name="nokamar" id="1" value="1"> 1
                             </label>
                             <label>
-                                <input type="radio" name="nokamar" id="2"> 2
+                                <input type="radio" name="nokamar" id="2" value="2"> 2
                             </label>
                             <label>
-                                <input type="radio" name="nokamar" id="3"> 3
+                                <input type="radio" name="nokamar" id="3" value="3"> 3
                             </label>
                             <label>
-                                <input type="radio" name="nokamar" id="4"> 4
+                                <input type="radio" name="nokamar" id="4" value="4"> 4
                             </label>
                             <label>
-                                <input type="radio" name="nokamar" id="5"> 5
+                                <input type="radio" name="nokamar" id="5" value="5"> 5
                             </label>
                             <label>
-                                <input type="radio" name="nokamar" id="6"> 6
+                                <input type="radio" name="nokamar" id="6" value="6"> 6
                             </label>
                             <label>
-                                <input type="radio" name="nokamar" id="7"> 7
+                                <input type="radio" name="nokamar" id="7" value="7"> 7
                             </label>
                             <label>
-                                <input type="radio" name="nokamar" id="8"> 8
+                                <input type="radio" name="nokamar" id="8" value="8"> 8
                             </label>
                             <label>
-                                <input type="radio" name="nokamar" id="9"> 9
+                                <input type="radio" name="nokamar" id="9" value="9"> 9
                             </label>
                             <label>
-                                <input type="radio" name="nokamar" id="10"> 10
+                                <input type="radio" name="nokamar" id="10" value="10"> 10
                             </label>
                             <label>
-                                <input type="radio" name="nokamar" id="11"> 11
+                                <input type="radio" name="nokamar" id="11" value="11"> 11
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="button" id="whatsappButton submitButton" class="btn btn-success" onclick="saveForm()">Save</button>
+                    <button type="submit button" id="whatsappButton" class="btn btn-success" onclick="saveForm()">Save</button>
                     <button type="button" class="btn btn-primary" onclick="total()">Total Harga</button>
                     <h4 id="result">Total Harga:</h4>
                 </div>
@@ -230,38 +231,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
     <script type ='text/javascript' src='assets/js/javascript.js'></script>
-    <script>
-            document.getElementById('rentalForm').addEventListener('submit', function(event) {
-                event.preventDefault(); 
-
-                var name = document.getElementById('name').value;
-                var phone = document.getElementById('phone').value;
-                var address = document.getElementById('address').value;
-                var facilities = Array.from(document.querySelectorAll('input[name="facilities"]:checked')).map(function(input) {
-                    return input.value;
-                });
-                var date = document.getElementById('date').value;
-                var duration = document.getElementById('duration').value;
-                var room = document.getElementById('room').value;
-
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'your_php_file.php', true);
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.onload = function() {
-                    if (xhr.status === 200) {
-                        console.log(xhr.responseText);
-                    } else {
-                        console.error('Error: ' + xhr.status);
-                    }
-                };
-                xhr.send('name=' + encodeURIComponent(name) +
-                        '&phone=' + encodeURIComponent(phone) +
-                        '&address=' + encodeURIComponent(address) +
-                        '&facilities=' + encodeURIComponent(facilities.join(',')) +
-                        '&date=' + encodeURIComponent(date) +
-                        '&duration=' + encodeURIComponent(duration) +
-                        '&room=' + encodeURIComponent(room));
-            });
-    </script>
 </body> 
 </html>

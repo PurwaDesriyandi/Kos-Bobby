@@ -2,25 +2,31 @@
     include('assets/php/dbconnection.php');
     $storedDate = "";
     $storedKritik = "";
+    $errorMessage = "";
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $tanggal = mysqli_real_escape_string($con, $_REQUEST['tanggal']);
-        $kritik = mysqli_real_escape_string($con, $_REQUEST['kritik']);
-
-        $sql = "INSERT INTO kritik_saran (tanggal, kritik) VALUES ('$tanggal', '$kritik')";
-
-        if (mysqli_query($con, $sql)) {
-            $storedDate = $tanggal;
-            $storedKritik = $kritik;
+        $tanggal = mysqli_real_escape_string($con, $_POST['tanggal']);
+        $kritik = mysqli_real_escape_string($con, $_POST['kritik']);
+        
+        if(empty($tanggal) || empty($kritik)) {
+            $errorMessage = "<h4 style='color: #FB8B24; text-align: center;'>Please fill out both fields.</h4>";
         } else {
-            echo "ERROR: Hush! Sorry $sql. "
-                . mysqli_error($con);
+            $sql = "INSERT INTO kritik_saran (tanggal, kritik) VALUES ('$tanggal', '$kritik')";
+            if (mysqli_query($con, $sql)) {
+                $storedDate = $tanggal;
+                $storedKritik = $kritik;
+            } else {
+                $errorMessage = "ERROR: Hush! Sorry $sql. " . mysqli_error($con);
+            }
         }
         mysqli_close($con);
     }
 ?>
-
-
+<?php
+    include('assets/php/dbconnection.php');
+    $sql = "SELECT tanggal, kritik FROM kritik_saran";
+    $result = mysqli_query($con, $sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,6 +125,11 @@
             </div>
             <button type="submit button" id="submit" value="submit" class="btn btn-primary">Submit</button>
         </form>
+        <div id="echoMessage">
+            <?php if(!empty($errorMessage)): ?>
+                    <?php echo $errorMessage; ?>
+            <?php endif; ?>
+        </div>
     </div>
 </section>
 <section>
@@ -131,6 +142,7 @@
     </div>
 </section>
 
+
 <section class="container">
     <div class="box-list">
         <table class="table table-hover table-bordered" id="table">
@@ -139,6 +151,12 @@
                 <th>Tanggal</th>
                 <th>Kritik dan Saran</th>
             </tr>
+            <?php while($row = mysqli_fetch_assoc($result)): ?>
+                <tr>
+                    <td><?php echo $row['tanggal']; ?></td>
+                    <td><?php echo $row['kritik']; ?></td>
+                </tr>
+            <?php endwhile; ?>
         </table>
     </div>
 </section>
@@ -193,7 +211,6 @@
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="assets/js/custom.js"></script>
 <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-
 <script>
     function submit() {
         const date = document.getElementById('date').value;
