@@ -16,7 +16,7 @@
                 $storedDate = $tanggal;
                 $storedKritik = $kritik;
             } else {
-                $errorMessage = "ERROR: Hush! Sorry $sql. " . mysqli_error($con);
+                $errorMessage = "ERROR: Sorry $sql. " . mysqli_error($con);
             }
         }
         mysqli_close($con);
@@ -55,10 +55,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="social text-center pull-right">
-                        <a href="https://twitter.com/PEMKOT_SOLO"><i class="fa fa-twitter"></i></a>
-                        <a href="https://www.facebook.com/pemkotsolo"><i class="fa fa-facebook"></i></a>
-                        <a href="https://www.instagram.com/pemkot_solo/"><i class="fa fa-instagram"></i></a>
-                        <a href="https://youtube.com/channel/UCL-EOcz_vh_2OlIMIh3zkyg"><i class="fa fa-youtube"></i></a>
+                        <a><i class="fa fa-home"></i></a>
                     </div>
                 </div>
             </div>
@@ -79,14 +76,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav pull-right mainNav">
-                    <li><a href="LoginAdmin.html">Login Admin</a></li>
-                    <li class="active"><a href="Laporan.html">Laporan</a></li>
+                    <li><a href="login_admin.php">Login Admin</a></li>
+                    <li class="active"><a href="kritik_saran.php">Kritik Saran</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu Lain <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="index.html">Beranda</a></li>
                             <li><a href="about.html">Fasilitas</a></li>
-                            <li><a href="pemesanan.html">Pemesanan</a></li>
+                            <li><a href="pesan.php">Pemesanan</a></li>
                             <li><a href="list.html">List Anggota Kos</a></li>
                         </ul>
                     </li>
@@ -167,7 +164,7 @@
             <div class="col-md-12" style="text-align: center;">
                 <a href="https://wa.me/6289649955776" class="btn btn-large"><i class="ifc-right"></i> Contact Person
                 </a>
-                <a href="pemesanan.html" class="btn btn-large"><i class="ifc-right"></i> Pemesanan </a>
+                <a href="pesan.php" class="btn btn-large"><i class="ifc-right"></i> Pemesanan </a>
             </div>
         </div>
     </div>

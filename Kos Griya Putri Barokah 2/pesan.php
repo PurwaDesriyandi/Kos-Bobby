@@ -1,7 +1,17 @@
 <?php
     include('assets/php/dbconnection.php');
+    $errorMessage = "";
+    $stored_nama = "";
+    $stored_nomor_hp = ""; 
+    $stored_alamat = ""; 
+    $stored_fasilitas = "";
+    $stored_tanggal = "";
+    $stored_sewa_bulan = "";
+    $stored_no_kamar = "";
+    $stored_total_harga = "";
+    
 
-    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POST['phone_number']) && isset($_POST['address']) && isset($_POST['date']) && isset($_POST['rent_duration']) && isset($_POST['nokamar'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['name']) && isset($_POST['phone_number']) && isset($_POST['address']) && isset($_POST['date']) && isset($_POST['rent_duration']) && isset($_POST['nokamar']) && isset($_POST['total_harga'])) {
         $nama = mysqli_real_escape_string($con, $_POST['name']);
         $nomor_hp = mysqli_real_escape_string($con, $_POST['phone_number']);
         $alamat = mysqli_real_escape_string($con, $_POST['address']);
@@ -9,20 +19,31 @@
         $tanggal = mysqli_real_escape_string($con, $_POST['date']);
         $sewa_bulan = mysqli_real_escape_string($con, $_POST['rent_duration']);
         $no_kamar = mysqli_real_escape_string($con, $_POST['nokamar']);
+        $total_harga = mysqli_real_escape_string($con, $_POST['total_harga']);
 
-        $sql = "INSERT INTO data_kos (nama, nomor_hp, alamat, fasilitas, tanggal, sewa_bulan, no_kamar) VALUES ('$nama', '$nomor_hp', '$alamat', '$fasilitas', '$tanggal', '$sewa_bulan', '$no_kamar')";
-        if(mysqli_query($con, $sql)){
-            echo "Records added successfully.";
-        } else{
-            echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
+
+        if(empty($nama) || empty($nomor_hp) || empty($alamat) || empty($fasilitas) || empty($tanggal) || empty($sewa_bulan) || empty($no_kamar)){
+            $errorMessage = "<h4 style='color: #FB8B24; text-align: center;'>Please fill out both fields.</h4>";
+        } else {
+            $sql = "INSERT INTO data_kos (nama, nomor_hp, alamat, fasilitas, tanggal, sewa_bulan, no_kamar, total_harga) VALUES ('$nama', '$nomor_hp', '$alamat', '$fasilitas', '$tanggal', '$sewa_bulan', '$no_kamar', '$total_harga')";
+            if (mysqli_query($con, $sql)) {
+                $stored_nama = $nama;
+                $stored_nomor_hp = $nomor_hp; 
+                $stored_alamat = $alamat; 
+                $stored_fasilitas = $fasilitas;
+                $stored_tanggal = $tanggal;
+                $stored_sewa_bulan = $sewa_bulan;
+                $stored_no_kamar = $no_kamar;
+                $stored_total_harga = $total_harga;
+            } else {
+                $errorMessage = "ERROR: Sorry $sql. " . mysqli_error($con);
+            }
         }
     } else {
-        echo "One or more required fields are missing.";
+        $errorMessage = "One or more required fields are missing.";
     }
     mysqli_close($con);
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,10 +73,7 @@
                             </div>
                                 <div class="col-md-6">
                                     <div class="social text-center pull-right">
-                                        <a target="_blank" href="https://twitter.com/PEMKOT_SOLO"><i class="fa fa-twitter"></i></a>
-                                        <a target="_blank" href="https://www.facebook.com/pemkotsolo"><i class="fa fa-facebook"></i></a>
-                                        <a target="_blank" href="https://www.instagram.com/pemkot_solo/"><i class="fa fa-instagram"></i></a>
-                                        <a target="_blank" href="https://youtube.com/channel/UCL-EOcz_vh_2OlIMIh3zkyg"><i class="fa fa-youtube"></i></a>
+                                        <a><i class="fa fa-home"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -80,8 +98,8 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">menu lain <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="LoginAdmin.html">Login Admin</a></li>
-                                    <li><a href="Laporan.html">Laporan</a></li>
+                                    <li><a href="login_admin.php">Login Admin</a></li>
+                                    <li><a href="kritik_saran.php">Kritik Saran</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -101,19 +119,22 @@
             </div>
     </header>
     <section>
+        <div class="section-heading">
+            <h2>Form Pemesanan</h2>
+        </div>
         <div class="container" style="max-width:1000px; padding: 40px 100px; border-radius: 40px;  background-color: #ffffff;">
             <form method="POST" class="form-horizontal" role="form" id="rentalForm">
                 <div class="form-group">
                     <label for="name" class="col-sm-1">Nama</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Nama Sesuai KTP">
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Nama Sesuai KTP" required>
                 </div>
                 <div class="form-group">
                     <label for="phone_number" class="col-sm-3">No Handphone</label>
-                    <input type="number" name="phone_number" class="form-control" id="phone_number" placeholder="No. Handphone">
+                    <input type="number" name="phone_number" class="form-control" id="phone_number" placeholder="No. Handphone" required>
                 </div>
                 <div class="form-group">
                     <label for="address" class="col-sm-3">Alamat Domisili</label>
-                    <textarea class="form-control" name="address" id="address" rows="3" placeholder="Alamat Domisili"></textarea>
+                    <textarea class="form-control" name="address" id="address" rows="3" placeholder="Alamat Domisili" required></textarea>
                 </div>
                 <div class="form-group">
                     <label for="facilities" class="col-sm-4">Fasilitas Tambahan</label>
@@ -131,19 +152,19 @@
                 </div>
                 <div class="form-group">
                     <label for="date" class="col-sm-3">Tanggal Masuk</label>
-                    <input type="date" name="date" class="form-control" id="date">
+                    <input type="date" name="date" class="form-control" id="date" required>
                 </div>
                 <div class="form-group">
                     <label for="rent_duration" class="col-sm-4">Waktu Sewa</label>
                     <div class="col-sm-9">
                         <div class="radio">
-                        <label><input type="radio" name="rent_duration" value="6" id="4200000"> 6 Bulan</label>
-                        <label><input type="radio" name="rent_duration" value="12" id="8000000"> 12 Bulan</label>
+                        <label><input type="radio" name="rent_duration" value="6" id="4200000" required> 6 Bulan</label>
+                        <label><input type="radio" name="rent_duration" value="12" id="8000000" required> 12 Bulan</label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="nokamar" class="col-sm-4">Pilih No Kamar</label>
+                    <label for="no_kamar" class="col-sm-4">Pilih No Kamar</label>
                     <div class="col-sm-9">
                         <div class="radio">
                             <label>
@@ -183,12 +204,34 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit button" id="whatsappButton" class="btn btn-success" onclick="saveForm()">Save</button>
+                    <input type="hidden" name="total_harga" id="total_price">
+                    <button type="submit button" id="whatsappButton" class="btn btn-success" onclick="whatsappMessage()">Save</button>
                     <button type="button" class="btn btn-primary" onclick="total()">Total Harga</button>
                     <h4 id="result">Total Harga:</h4>
                 </div>
-            </div>
+            </form>
         </div>    
+        <div id="echoMessage">
+            <div class="box-list">
+            <?php  if(!empty($stored_nama) && !empty($stored_nomor_hp) && !empty($stored_alamat) && !empty($stored_fasilitas) && !empty($stored_tanggal) && !empty($stored_sewa_bulan) && !empty($stored_no_kamar)): ?>
+                <h4 style="font-weight: bold; color: #4B6363; text-align: center;">Data stored in a database successfully.</h4>
+            <?php endif; ?>
+            </div>
+        </div>
+        <div id="echoMessage">
+            <?php if(!empty($errorMessage)): ?>
+                    <?php echo $errorMessage; ?>
+            <?php endif; ?>
+        </div>
+    </section>
+    <section>
+        <div class="col-md-12">
+            <div style="padding-bottom: 100px; padding-top: 50px;">
+                <div class="col-md-12" style="text-align: center;">
+                    <a href="https://wa.me/6289649955776" class="btn btn-large"><i class="ifc-right"></i> Contact Person </a>
+                </div>
+            </div>
+        </div>
     </section>
     <footer class="footer-1">
         <div class="konten-footer-1">
@@ -231,5 +274,67 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
     <script type ='text/javascript' src='assets/js/javascript.js'></script>
+    <script>
+        function total() {
+            let total = 0;
+            let rentDurationValue = 0;
+
+            document.querySelectorAll('input[type=radio][name=rent_duration]:checked').forEach(function(item) {
+                rentDurationValue = parseInt(item.value); 
+                total += parseInt(item.id);
+            });
+            document.querySelectorAll('input[type=checkbox]:checked').forEach(function(item) {
+                total += parseInt(item.id) * rentDurationValue; // Multiply facility cost by the rent duration value
+            });
+
+            document.getElementById("result").innerText = "Total Harga: Rp " + total.toLocaleString();
+            document.getElementById("total_price").value = total; // Set the hidden input value
+        }
+
+        // function hideEchoMessage() {
+        //     setTimeout(function() {
+        //         document.getElementById('echoMessage').style.display = 'none';
+        //     }, 4000);
+        // }
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     hideEchoMessage();
+        // });
+        
+        function whatsappMessage(){
+            var name = document.getElementById('name').value;
+            var phone_number = document.getElementById('phone_number').value;
+            var address = document.getElementById('address').value;
+            var additional_facilities_checked = Array.from(document.querySelectorAll('input[name="additional_facilities[]"]:checked')).map(el => el.value);
+            var additional_facilities_prices = Array.from(document.querySelectorAll('input[name="additional_facilities[]"]:checked')).map(el => el.id);
+            var additional_facilities_info = [];
+            for (var i = 0; i < additional_facilities_checked.length; i++) {
+                additional_facilities_info.push(additional_facilities_checked[i] + ' (Rp. ' + additional_facilities_prices[i] + ')');
+            }
+            var date = document.getElementById('date').value;
+            var total_sewa = document.querySelector('input[name="rent_duration"]:checked') ? document.querySelector('input[name="rent_duration"]:checked').value : '';
+            var rent_duration = document.querySelector('input[name="rent_duration"]:checked') ? document.querySelector('input[name="rent_duration"]:checked').id : '';
+            var nokamar = document.querySelector('input[name="nokamar"]:checked') ? document.querySelector('input[name="nokamar"]:checked').id : '';
+            total();
+            var total_price= document.getElementById('result').textContent.replace('Total Harga:', '')
+
+            var whatsappMessage = `*Pemesanan Kos Putri Griya Barokah 2*\n\n` +
+                `*Nama:* ${name}\n` +
+                `*No Handphone:* ${phone_number}\n` +
+                `*Alamat Domisili:* ${address}\n` +
+                `*Fasilitas Tambahan:* ${additional_facilities_info.join(', ')}\n` + 
+                `*Tanggal Masuk:* ${date}\n` +
+                `*Waktu Sewa:* ${total_sewa} Bulan = Rp. ${rent_duration} \n` +
+                `*Pilih No Kamar:* ${nokamar}\n` +
+                `*Total Harga Sewa: Rp. ${total_price}*`;
+
+            var whatsappUrl = `https://wa.me/6282256430291?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappUrl, '_blank');
+        };
+    </script>
+    <script>
+        setTimeout(function() {
+            document.getElementById('echoMessage').style.display = 'none';
+        }, 4000);
+    </script>
 </body> 
 </html>
