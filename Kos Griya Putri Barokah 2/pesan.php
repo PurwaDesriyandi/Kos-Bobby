@@ -23,7 +23,7 @@
 
 
         if(empty($nama) || empty($nomor_hp) || empty($alamat) || empty($fasilitas) || empty($tanggal) || empty($sewa_bulan) || empty($no_kamar)){
-            $errorMessage = "<h4 style='color: #FB8B24; text-align: center;'>Please fill out both fields.</h4>";
+            $errorMessage = "<h4 style='color: #848484; text-align: center;'>Please fill out both fields.</h4>";
         } else {
             $sql = "INSERT INTO data_kos (nama, nomor_hp, alamat, fasilitas, tanggal, sewa_bulan, no_kamar, total_harga) VALUES ('$nama', '$nomor_hp', '$alamat', '$fasilitas', '$tanggal', '$sewa_bulan', '$no_kamar', '$total_harga')";
             if (mysqli_query($con, $sql)) {
@@ -40,7 +40,6 @@
             }
         }
     } else {
-        $errorMessage = "One or more required fields are missing.";
     }
     mysqli_close($con);
 ?>
@@ -214,7 +213,7 @@
         <div id="echoMessage">
             <div class="box-list">
             <?php  if(!empty($stored_nama) && !empty($stored_nomor_hp) && !empty($stored_alamat) && !empty($stored_fasilitas) && !empty($stored_tanggal) && !empty($stored_sewa_bulan) && !empty($stored_no_kamar)): ?>
-                <h4 style="font-weight: bold; color: #4B6363; text-align: center;">Data stored in a database successfully.</h4>
+                <h4 style="font-weight: bold; color: #848484; text-align: center;">Data stored in a database successfully.</h4>
             <?php endif; ?>
             </div>
         </div>
@@ -273,9 +272,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
-    <script type ='text/javascript' src='assets/js/javascript.js'></script>
+    <script type ='text/javascript' src='/assets/js/javascript.js'></script>
     <script>
-        function total() {
+            function total() {
             let total = 0;
             let rentDurationValue = 0;
 
@@ -290,16 +289,6 @@
             document.getElementById("result").innerText = "Total Harga: Rp " + total.toLocaleString();
             document.getElementById("total_price").value = total; // Set the hidden input value
         }
-
-        // function hideEchoMessage() {
-        //     setTimeout(function() {
-        //         document.getElementById('echoMessage').style.display = 'none';
-        //     }, 4000);
-        // }
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     hideEchoMessage();
-        // });
-        
         function whatsappMessage(){
             var name = document.getElementById('name').value;
             var phone_number = document.getElementById('phone_number').value;

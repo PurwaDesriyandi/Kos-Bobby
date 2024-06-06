@@ -1,6 +1,8 @@
 <?php 
     include('assets/php/dbconnection.php');
     $stmt = null;
+    $errorMessage = "";
+    $successMessage = "";
 
     if(isset($_POST['submit'])){
         $username = $_POST['username'];
@@ -16,18 +18,15 @@
         $result = mysqli_stmt_get_result($stmt);
 
         if (mysqli_num_rows($result) == 1) {
-            header("Location: list_dataanggota.html");
-            exit();
+            $successMessage = "Login Successful.";
         } else {
-            header("Location: pesan.php?error=1");
-            exit();
+            $errorMessage = "Wrong username or password. Please try again.";
         }
     }
     if ($stmt !== null) {
         mysqli_stmt_close($stmt);
     }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,7 +70,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav pull-right mainNav">
-                    <li class="active"><a href="pesan.php">Login Admin</a></li>
+                    <li class="active"><a href="login_admin.php">Login Admin</a></li>
                     <li><a href="kritik_saran.php">Kritik Saran</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu Lain <b class="caret"></b></a>
@@ -113,14 +112,23 @@
                 </div>
                 <button type="submit" name="submit" id="saveForm" value="saveForm" class="btn btn-primary">Login</button>
             </form>
+            <?php if (!empty($successMessage)): ?>
+                <div id="successMessage" class="alert alert-success" role="alert">
+                    <?php echo $successMessage; ?>
+                </div>
+            <?php endif; ?>
+            <?php if (!empty($errorMessage)): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $errorMessage; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </section>
     <section>
         <div class="col-md-12">
             <div style="padding-bottom: 100px; padding-top: 50px;">
                 <div class="col-md-12" style="text-align: center;">
-                    <a href="https://wa.me/6289649955776" class="btn btn-large"><i class="ifc-right"></i> Contact Person </a>
-                    <a href="pesan.php" class="btn btn-large"><i class="ifc-right"></i> Pemesanan </a>
+                    
                 </div>
             </div>
         </div>
@@ -156,5 +164,13 @@
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="/assets/js/custom.js"></script>
     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+    <script>
+        setTimeout(function() {
+            var successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+                window.location.href = 'list_dataanggota.html';
+            }
+        }, 1500);
+    </script>
 </body>
 </html>

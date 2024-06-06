@@ -9,7 +9,7 @@
         $kritik = mysqli_real_escape_string($con, $_POST['kritik']);
         
         if(empty($tanggal) || empty($kritik)) {
-            $errorMessage = "<h4 style='color: #FB8B24; text-align: center;'>Please fill out both fields.</h4>";
+            $errorMessage = "<h4 style='color: #848484; text-align: center;'>Please fill out both fields.</h4>";
         } else {
             $sql = "INSERT INTO kritik_saran (tanggal, kritik) VALUES ('$tanggal', '$kritik')";
             if (mysqli_query($con, $sql)) {
@@ -105,105 +105,98 @@
         </div>
     </div>
 
-<section>
-    <div class="section-heading">
-        <h2>Kritik Saran</h2>
-    </div>
-    <div class="container"
-        style="max-width:1000px; padding: 40px 100px; border-radius: 40px;  background-color: #ffffff;">
-        <form method="POST" class="form-horizontal" role="form" id="rentalForm">
-            <div class="form-group">
-                <label for="date" class="col-sm-1">Tanggal</label>
-                <input type="date" name="tanggal" id="date" class="form-control" placeholder="tanggal">
-            </div>
-            <div class="form-group">
-                <label for="kritiksaran" class="col-sm-3">Kritik Saran</label>
-                <textarea class="form-control" name="kritik" id="kritiksaran" rows="3" placeholder="kritik"></textarea>
-            </div>
-            <button type="submit button" id="submit" value="submit" class="btn btn-primary">Submit</button>
-        </form>
-        <div id="echoMessage">
-            <?php if(!empty($errorMessage)): ?>
-                    <?php echo $errorMessage; ?>
-            <?php endif; ?>
+    <section>
+        <div class="section-heading">
+            <h2>Kritik Saran</h2>
         </div>
-    </div>
-</section>
-<section>
-    <div class="container" id="echoMessage">
+        <div class="container"
+            style="max-width:1000px; padding: 40px 100px; border-radius: 40px;  background-color: #ffffff;">
+            <form method="POST" class="form-horizontal" role="form" id="rentalForm">
+                <div class="form-group">
+                    <label for="date" class="col-sm-1">Tanggal</label>
+                    <input type="date" name="tanggal" id="date" class="form-control" placeholder="tanggal">
+                </div>
+                <div class="form-group">
+                    <label for="kritiksaran" class="col-sm-3">Kritik Saran</label>
+                    <textarea class="form-control" name="kritik" id="kritiksaran" rows="3" placeholder="kritik"></textarea>
+                </div>
+                <button type="submit button" id="submit" value="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <div id="echoMessage">
+                <?php if(!empty($errorMessage)): ?>
+                        <?php echo $errorMessage; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container" id="echoMessage">
+            <div class="box-list">
+                <?php if(!empty($storedDate) && !empty($storedKritik)): ?>
+                    <h4 style="font-weight: bold; color: #848484; text-align: center;">Data stored in a database successfully.</h4>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+    <section class="container">
         <div class="box-list">
-            <?php if(!empty($storedDate) && !empty($storedKritik)): ?>
-                <h4 style="font-weight: bold; color: #4B6363; text-align: center;">Data stored in a database successfully.</h4>
-            <?php endif; ?>
-        </div>
-    </div>
-</section>
-
-
-<section class="container">
-    <div class="box-list">
-        <table class="table table-hover table-bordered" id="table">
-            <h1>Kritik Saran</h1>
-            <tr>
-                <th>Tanggal</th>
-                <th>Kritik dan Saran</th>
-            </tr>
-            <?php while($row = mysqli_fetch_assoc($result)): ?>
+            <table class="table table-hover table-bordered" id="table">
+                <h1>Kritik Saran</h1>
                 <tr>
-                    <td><?php echo $row['tanggal']; ?></td>
-                    <td><?php echo $row['kritik']; ?></td>
+                    <th>Tanggal</th>
+                    <th>Kritik dan Saran</th>
                 </tr>
-            <?php endwhile; ?>
-        </table>
-    </div>
-</section>
-
-<section>
-    <div class="col-md-12">
-        <div style="padding-bottom: 100px; padding-top: 50px;">
-            <div class="col-md-12" style="text-align: center;">
-                <a href="https://wa.me/6289649955776" class="btn btn-large"><i class="ifc-right"></i> Contact Person
-                </a>
-                <a href="pesan.php" class="btn btn-large"><i class="ifc-right"></i> Pemesanan </a>
+                <?php while($row = mysqli_fetch_assoc($result)): ?>
+                    <tr>
+                        <td><?php echo $row['tanggal']; ?></td>
+                        <td><?php echo $row['kritik']; ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            </table>
+        </div>
+    </section>
+    <section>
+        <div class="col-md-12">
+            <div style="padding-bottom: 100px; padding-top: 50px;">
+                <div class="col-md-12" style="text-align: center;">
+                    <a href="https://wa.me/6289649955776" class="btn btn-large"><i class="ifc-right"></i> Contact Person
+                    </a>
+                    <a href="pesan.php" class="btn btn-large"><i class="ifc-right"></i> Pemesanan </a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-<footer class="footer-1">
-    <div class="konten-footer-1">
-        <img src="assets/images/Griya Barokah.png" alt="tes"
-            style="height: 110px; width:110px; position: relative; top: 30px;" />
-        <p>
-        <P style="font-size: 20px; text-align: left;">GRIYA BAROKAH</P>
-        <p> Tanon Lor, RT 03/RW 02 Gedongan <br />
-            Colomadu, Karanganyar.<br>
-            Kode Pos 57173<br>
-            0896-4995-5776</p>
-        </p>
-    </div>
-    <div class="garis"></div>
-    <div class="konten-footer-2">
-        <div class="konten-footer-2-list-1" style="margin-left: 10%;">
-            <h2 style="text-align: center; color: rgb(234, 250, 192);">Pengunjung</h2>
-            <div class="elfsight-app-096e9283-eb7e-4425-958c-188bdf46be1f" data-elfsight-app-lazy style="width: 200px;">
+    </section>
+    <footer class="footer-1">
+        <div class="konten-footer-1">
+            <img src="assets/images/Griya Barokah.png" alt="tes"
+                style="height: 110px; width:110px; position: relative; top: 30px;" />
+            <p>
+            <P style="font-size: 20px; text-align: left;">GRIYA BAROKAH</P>
+            <p> Tanon Lor, RT 03/RW 02 Gedongan <br />
+                Colomadu, Karanganyar.<br>
+                Kode Pos 57173<br>
+                0896-4995-5776</p>
+            </p>
+        </div>
+        <div class="garis"></div>
+        <div class="konten-footer-2">
+            <div class="konten-footer-2-list-1" style="margin-left: 10%;">
+                <h2 style="text-align: center; color: rgb(234, 250, 192);">Pengunjung</h2>
+                <div class="elfsight-app-096e9283-eb7e-4425-958c-188bdf46be1f" data-elfsight-app-lazy style="width: 200px;">
+                </div>
+            </div>
+            <div class="konten-footer-2-list-2 " style="margin-right: 70px; ">
+                <h1 style="text-align: center; color: rgb(234, 250, 192);">MAP</h1>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.21283154501654!2d110.7711621674591!3d-7.53069549999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1478197db6fd%3A0x9d3f146680f2e612!2sFQ9C%2BPG8%2C%20Jl.%20Lor%20In%2C%20Tanon%20Kidul%2C%20Gedongan%2C%20Kec.%20Colomadu%2C%20Kabupaten%20Karanganyar%2C%20Jawa%20Tengah%2057174!5e0!3m2!1sen!2sid!4v1716356132796!5m2!1sen!2sid"
+                    width="295" height="289" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
-        <div class="konten-footer-2-list-2 " style="margin-right: 70px; ">
-            <h1 style="text-align: center; color: rgb(234, 250, 192);">MAP</h1>
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d247.21283154501654!2d110.7711621674591!3d-7.53069549999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1478197db6fd%3A0x9d3f146680f2e612!2sFQ9C%2BPG8%2C%20Jl.%20Lor%20In%2C%20Tanon%20Kidul%2C%20Gedongan%2C%20Kec.%20Colomadu%2C%20Kabupaten%20Karanganyar%2C%20Jawa%20Tengah%2057174!5e0!3m2!1sen!2sid!4v1716356132796!5m2!1sen!2sid"
-                width="295" height="289" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
+    </footer>
+    <div class="copyright">
+        <img src="assets/images/Griya Barokah.png" style="height: 20px;"> UHUY CORPORATION
     </div>
-</footer>
-
-<div class="copyright">
-    <img src="assets/images/Griya Barokah.png" style="height: 20px;"> UHUY CORPORATION
-</div>
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="assets/js/custom.js"></script>
