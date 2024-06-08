@@ -91,8 +91,8 @@
                     <div class="navbar-collapse collapse" >
                         <ul class="nav navbar-nav pull-right mainNav">
                             <li><a href="index.html">Beranda</a></li>
-                            <li><a href="about.html">Fasilitas</a></li>
-                            <li><a href="list.html">List Anggota Kos</a></li>
+                            <li><a href="fasilitas.html">Fasilitas</a></li>
+                            <li><a href="list.php">List Anggota Kos</a></li>
                             <li class="active" ><a href="pesan.php">Pemesanan</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">menu lain <b class="caret"></b></a>

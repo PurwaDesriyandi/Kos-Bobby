@@ -82,9 +82,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu Lain <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="index.html">Beranda</a></li>
-                            <li><a href="about.html">Fasilitas</a></li>
+                            <li><a href="fasilitas.html">Fasilitas</a></li>
                             <li><a href="pesan.php">Pemesanan</a></li>
-                            <li><a href="list.html">List Anggota Kos</a></li>
+                            <li><a href="list.php">List Anggota Kos</a></li>
                         </ul>
                     </li>
                 </ul>

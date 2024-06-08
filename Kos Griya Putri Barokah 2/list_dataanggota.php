@@ -1,32 +1,29 @@
-<?php 
+<?php
     include('assets/php/dbconnection.php');
-    $stmt = null;
-    $errorMessage = "";
-    $successMessage = "";
 
-    if(isset($_POST['submit'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['no_kamar']) && isset($_POST['nama'])) {
+        $no_kamar = intval($_POST['no_kamar']);
+        $nama = $con->real_escape_string($_POST['nama']);
+        $sql = "UPDATE data_kamar SET nama='$nama' WHERE no_kamar=$no_kamar";
+        $con->query($sql);
+    }
 
-        $username = mysqli_real_escape_string($con, $username);
-        $password = mysqli_real_escape_string($con, $password);
+    $sql = "SELECT no_kamar, nama FROM data_kamar";
+    $result = $con->query($sql);
 
-        $query = "SELECT * FROM data_admin WHERE username=? AND Password=?";
-        $stmt = mysqli_prepare($con, $query);
-        mysqli_stmt_bind_param($stmt, "ss", $username, $password);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
+    $edit_no_kamar = isset($_GET['no_kamar']) ? intval($_GET['no_kamar']) : null;
+    $edit_nama = "";
 
-        if (mysqli_num_rows($result) == 1) {
-            $successMessage = "Login Successful.";
-        } else {
-            $errorMessage = "Wrong username or password. Please try again.";
+    if ($edit_no_kamar !== null) {
+        $sql = "SELECT nama FROM data_kamar WHERE no_kamar = $edit_no_kamar";
+        $edit_result = $con->query($sql);
+        if ($edit_row = $edit_result->fetch_assoc()) {
+            $edit_nama = $edit_row['nama'];
         }
     }
-    if ($stmt !== null) {
-        mysqli_stmt_close($stmt);
-    }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,28 +61,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="">
                     <img src="assets/images/Griya Barokah.png" alt="Logo Surakarta" style="height: 60px; width: 60px;">
                 </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav pull-right mainNav">
-                    <li class="active"><a href="login_admin.php">Login Admin</a></li>
-                    <li><a href="kritik_saran.php">Kritik Saran</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu Lain <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="index.html">Beranda</a></li>
-                            <li><a href="fasilitas.html">Fasilitas</a></li>
-                            <li><a href="pesan.php">Pemesanan</a></li>
-                            <li><a href="list.php">List Anggota Kos</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="index.html" id="logout-link">Logout</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <header id="head" class="secondary secondary-1">
+        <h1 style="width: 100%; font-size: 30px; text-align: center; align-items: center; " id="logout-announcement"></h1>
     </header>
     <div class="head-box" >
         <div class="container">
@@ -96,39 +84,49 @@
             </div>
         </div>
     </div>
-    <section>
-        <div class="section-heading">
-            <h2>Login Admin</h2>
+    <section class="container">
+        <div class="box-list">
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>No Kamar</th>
+                    <th>Nama</th>
+                    <th>Edit Nama</th>
+                </tr>
+                <?php
+                    echo "<link rel='stylesheet' href='assets/css/style.css'>";
+                    if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>
+                                    <td>" . $row["no_kamar"] . "</td>
+                                    <td>" . $row["nama"] . "</td>
+                                    <td>
+                                        <button class='btn-list' id=' btn btn-primary'><a style='cursor: pointer; color:#424530; text-decoration: none;' href='list_dataanggota.php?no_kamar=" . $row["no_kamar"] . "'>EDIT</a></button>
+                                    </td>
+                                </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='3'>No data found</td></tr>";
+                    }
+                ?>
+            </table>
         </div>
-        <div class="container" style="max-width:1000px; padding: 40px 100px; border-radius: 40px;  background-color: #ffffff;">
-            <form method="POST" class="form-horizontal" role="form" id="rentalForm" >
-                <div class="form-group">
-                    <label for="username" class="col-sm-1">Username</label>
-                    <input type="text" name="username" id="username" class="form-control" placeholder="username">
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-sm-3">Password</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="password">
-                </div>
-                <button type="submit" name="submit" id="saveForm" value="saveForm" class="btn btn-primary">Login</button>
+
+        <?php if ($edit_no_kamar !== null): ?>
+        <div class="edit-form">
+            <h2>Edit Nama for No Kamar <?php echo $edit_no_kamar; ?></h2>
+            <form action="list_dataanggota.php" method="post">
+                <input type="hidden" name="no_kamar" value="<?php echo $edit_no_kamar; ?>">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" value="<?php echo $edit_nama; ?>">
+                <input style="background-color: #87DB4F; color: black; border-color: #424530;" type="submit" value="Update">
             </form>
-            <?php if (!empty($successMessage)): ?>
-                <div id="successMessage" class="alert alert-success" role="alert">
-                    <?php echo $successMessage; ?>
-                </div>
-            <?php endif; ?>
-            <?php if (!empty($errorMessage)): ?>
-                <div class="alert alert-danger" role="alert">
-                    <?php echo $errorMessage; ?>
-                </div>
-            <?php endif; ?>
         </div>
+        <?php endif; ?>
     </section>
     <section>
         <div class="col-md-12">
             <div style="padding-bottom: 100px; padding-top: 50px;">
                 <div class="col-md-12" style="text-align: center;">
-                    
                 </div>
             </div>
         </div>
@@ -165,12 +163,26 @@
     <script src="/assets/js/custom.js"></script>
     <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
     <script>
-        setTimeout(function() {
-            var successMessage = document.getElementById('successMessage');
-            if (successMessage) {
-                window.location.href = 'list_dataanggota.php';
-            }
-        }, 1500);
+        function displayLogoutAnnouncement() {
+            var logoutHeader = document.getElementById("logout-announcement");
+            logoutHeader.innerHTML = "Kamu Akan Logout Dalam <span id='countdown'>3</span> Detik...";
+            var count = 3;
+            var countdown = setInterval(function() {
+                count--;
+                document.getElementById("countdown").innerText = count;
+                if (count === 0) {
+                    clearInterval(countdown);
+                    window.location.href = "index.html"; 
+                }
+            }, 1000);
+        }
+
+        $(document).ready(function() {
+            $("#logout-link").click(function(event) {
+                event.preventDefault();
+                displayLogoutAnnouncement();
+            });
+        });
     </script>
 </body>
 </html>

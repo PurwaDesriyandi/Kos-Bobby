@@ -255,7 +255,8 @@ max-width: 100%;
 margin: 0 auto;
 }
 .box-2 .btn{
-background-color: #97db4f !important;
+background-color:  #e6e7b4 !important;
+color: #424530;
 }
 .box-2 .btn:hover{
 color:#424530; 
@@ -287,6 +288,7 @@ color:#424530;
 	border: 0 none;
 }
 .btn-action:hover, .btn-primary:hover {
+	color: #424530;
 	background: #04a0b7;
 }
 .btn:hover, .btn:active {
@@ -594,6 +596,20 @@ nav#filter li {
 	display: inline-block;
 	margin: 10px;
 }
+.logout-announcement {
+	padding: 10px;
+	display: none;
+	margin-top: 120px;
+ 	color: #FB8B24;
+ 	position: absolute;
+	font-size: 40px;
+	text-align: center;
+	margin-top: 20px;
+	z-index: 10;
+}
+.logout-announcement span{
+	font-weight: bold;
+}
 nav#filter a {
 	padding: 4px 12px;
 	line-height: 20px;
@@ -654,8 +670,13 @@ body .container p{
 	color: #171219;
 }
 .btn {
-	background: #87db4f;
+	background: #e6e7b4;
 	color: #fff;
+}
+.btn-list{
+	color:#424530;
+	background-color: transparent;
+	border-color: red;
 }
 .footer2 a {
 	padding: 4px 8px;

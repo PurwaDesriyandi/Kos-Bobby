@@ -16,7 +16,7 @@
     }
     window.onresize = autoResizeDiv;
     autoResizeDiv();
-
+    
     function total() {
         let total = 0;
         let rentDurationValue = 0;
