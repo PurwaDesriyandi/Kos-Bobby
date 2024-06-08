@@ -1,2 +1,0 @@
-# Pemerintah-Kota-Surakarta 
- fafa
