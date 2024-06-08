@@ -73,7 +73,7 @@
         </div>
     </div>
     <header id="head" class="secondary secondary-1">
-        <h1 style="width: 100%; font-size: 30px; text-align: center; align-items: center; " id="logout-announcement"></h1>
+    <h1 style="width: 100%; font-size: 30px; text-align: center; align-items: center; color:#FFEFCD ;" id="logout-announcement"></h1>
     </header>
     <div class="head-box" >
         <div class="container">
