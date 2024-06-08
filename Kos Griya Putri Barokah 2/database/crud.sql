@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2024 at 07:17 AM
+-- Generation Time: Jun 08, 2024 at 08:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,6 +48,34 @@ INSERT INTO `data_admin` (`username`, `Password`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `data_kamar`
+--
+
+CREATE TABLE `data_kamar` (
+  `no_kamar` int(5) NOT NULL,
+  `nama` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `data_kamar`
+--
+
+INSERT INTO `data_kamar` (`no_kamar`, `nama`) VALUES
+(1, 'Lintang'),
+(2, '-'),
+(3, 'Purwa'),
+(4, '-'),
+(5, '-'),
+(6, '-'),
+(7, '-'),
+(8, '-'),
+(9, '-'),
+(10, '-'),
+(11, '-');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `data_kos`
 --
 
@@ -58,8 +86,18 @@ CREATE TABLE `data_kos` (
   `fasilitas` varchar(100) NOT NULL,
   `tanggal` date NOT NULL,
   `sewa_bulan` varchar(100) NOT NULL,
-  `no_kamar` varchar(100) NOT NULL
+  `no_kamar` varchar(100) NOT NULL,
+  `total_harga` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `data_kos`
+--
+
+INSERT INTO `data_kos` (`nama`, `nomor_hp`, `alamat`, `fasilitas`, `tanggal`, `sewa_bulan`, `no_kamar`, `total_harga`) VALUES
+('fafa', 1298229, 'kcfcfgvhbjn', 'Kipas, Laptop', '2024-05-26', '6', '3', 4200000),
+('fafa', 1298229, 'kcfcfgvhbjn', 'Kipas, Laptop', '2024-05-26', '6', '3', 4200000),
+('fafafa', 987654456, 'kfty', 'Laptop, Kulkas', '2024-06-03', '6', '4', 0);
 
 -- --------------------------------------------------------
 
@@ -71,25 +109,6 @@ CREATE TABLE `kritik_saran` (
   `tanggal` date NOT NULL,
   `kritik` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `kritik_saran`
---
-
-INSERT INTO `kritik_saran` (`tanggal`, `kritik`) VALUES
-('0000-00-00', ''),
-('0000-00-00', ''),
-('0000-00-00', ''),
-('0000-00-00', ''),
-('2024-05-26', 'Terimakasih Pak'),
-('2024-05-26', 'Terimakasih Pak'),
-('2024-05-26', 'Terimakasih Pak'),
-('2024-05-26', 'Terimakasih Pak'),
-('2024-05-26', 'Terimakasih Pak'),
-('2024-05-26', 'Terimakasih mas'),
-('2024-05-27', 'Halo'),
-('2024-05-27', 'Halo'),
-('2024-05-27', 'Halo Mas');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
