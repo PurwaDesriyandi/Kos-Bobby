@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2024 at 08:11 AM
+-- Generation Time: Jun 09, 2024 at 12:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -109,6 +109,56 @@ CREATE TABLE `kritik_saran` (
   `tanggal` date NOT NULL,
   `kritik` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kritik_saran`
+--
+
+INSERT INTO `kritik_saran` (`tanggal`, `kritik`) VALUES
+('2024-05-27', 'Helo');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visitors`
+--
+
+CREATE TABLE `visitors` (
+  `id` int(11) NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `visit_time` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `visitors`
+--
+
+INSERT INTO `visitors` (`id`, `ip_address`, `visit_time`) VALUES
+(1, '::1', '2024-06-09 08:36:23'),
+(2, '::1', '2024-06-09 08:36:27'),
+(3, '::1', '2024-06-09 08:36:28'),
+(4, '::1', '2024-06-09 08:36:29'),
+(5, '::1', '2024-06-09 08:36:32');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `visitors`
+--
+ALTER TABLE `visitors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `visitors`
+--
+ALTER TABLE `visitors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
